@@ -77,12 +77,29 @@ tar -xzf /tmp/infracost.tar.gz -C /tmp
 sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
 rm -f /tmp/infracost.tar.gz
 
-echo "Installing Checkov v${CHECKOV_VERSION}..."
-pip3 install checkov==${CHECKOV_VERSION}
+echo "Installing Checkov v${CHECKOV_VERSION} in virtual environment..."
+# Install python3-venv if not already installed
+sudo apt-get update && sudo apt-get install -y python3-venv
+
+# Create a virtual environment for Checkov
+VENV_DIR="/opt/checkov-venv"
+sudo python3 -m venv ${VENV_DIR}
+
+# Install Checkov in the virtual environment
+sudo ${VENV_DIR}/bin/pip install checkov==${CHECKOV_VERSION}
+
+# Create a wrapper script for Checkov
+sudo tee /usr/local/bin/checkov > /dev/null << EOL
+#!/bin/bash
+${VENV_DIR}/bin/checkov \$@
+EOL
+
+# Make the wrapper executable
+sudo chmod +x /usr/local/bin/checkov
 
 # Create .tflint.hcl config file
-mkdir -p /home/vscode/.tflint.d
-cat > /home/vscode/.tflint.hcl << EOF
+mkdir -p /home/node/.tflint.d
+cat > /home/node/.tflint.hcl << EOF
 plugin "aws" {
   enabled = true
 }
@@ -97,6 +114,6 @@ plugin "google" {
 EOF
 
 # Set ownership for the config file
-chown -R vscode:vscode /home/vscode/.tflint.d
+chown -R node:node /home/node/.tflint.d
 
 echo "Terraform tools installation complete!"
