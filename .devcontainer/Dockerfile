@@ -88,6 +88,13 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 RUN npm install -g @anthropic-ai/claude-code
 
 USER root
+# Create wheel group if it doesn't exist and add node user to it
+RUN groupadd -f wheel && usermod -aG wheel node
+
+# Add the wheel group to sudoers with NOPASSWD
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/wheel-group && \
+    chmod 0440 /etc/sudoers.d/wheel-group
+
 RUN groupadd -f docker && usermod -aG docker node
 
 # Grant sudo privileges to node user for Docker commands without password
