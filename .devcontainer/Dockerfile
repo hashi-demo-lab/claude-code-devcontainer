@@ -32,6 +32,8 @@ RUN apt update && apt install -y less \
   iproute2 \
   dnsutils \
   aggregate \
+  python3 \
+  python3-pip \
   jq
 
 # Ensure default node user has access to /usr/local/share
