@@ -66,8 +66,8 @@ if ! command -v go &> /dev/null; then
     GO_VERSION="1.20.5"
     curl -sSLo /tmp/go.tar.gz "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz"
     sudo tar -C /usr/local -xzf /tmp/go.tar.gz
-    echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/vscode/.bashrc
-    echo 'export PATH=$PATH:$HOME/go/bin' >> /home/vscode/.bashrc
+    echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/node/.bashrc
+    echo 'export PATH=$PATH:$HOME/go/bin' >> /home/node/.bashrc
     rm -f /tmp/go.tar.gz
 fi
 
