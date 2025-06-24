@@ -75,6 +75,46 @@ The container automatically sets up the necessary environment for working with:
 3. Terraform projects with security scanning tools
 4. Network-isolated development environment
 
-## 🤝 Contributing
+## � MCP Servers
+
+This devcontainer supports Model Context Protocol (MCP) servers, including Docker-based MCP servers.
+
+### Using Docker-based MCP Servers
+
+The devcontainer is configured with:
+
+- Docker CLI installed
+- Docker socket mounted from the host
+- Support for running Docker commands inside the container
+
+A sample Terraform MCP server is included in the `.mcp.json` file at the project root:
+
+```json
+{
+  "mcpServers": {
+    "terraform": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "hashicorp/terraform-mcp-server"
+      ]
+    }
+  }
+}
+```
+
+### Adding Custom MCP Servers
+
+To add your own MCP servers:
+
+1. Edit the `.mcp.json` file at the project root
+2. Add your server configuration following the MCP protocol
+3. Claude Code will automatically detect and prompt for approval
+
+For more information, see the [Claude Code MCP documentation](https://docs.anthropic.com/en/docs/claude-code/mcp).
+
+## �🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
