@@ -6,7 +6,8 @@
         "run",
         "-i",
         "--rm",
-        "hashicorp/terraform-mcp-server"
+        "hashicorp/terraform-mcp-server",
+        "-v /var/run/docker.sock:/var/run/docker.sock"
       ]
     }
   }

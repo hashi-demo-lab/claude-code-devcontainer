@@ -88,6 +88,8 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 RUN npm install -g @anthropic-ai/claude-code
 
 USER root
+RUN groupadd -f docker && usermod -aG docker node
+
 # Copy library scripts
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN chmod +x /tmp/library-scripts/*.sh
