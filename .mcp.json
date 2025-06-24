@@ -1,12 +1,12 @@
 {
   "mcpServers": {
-    "terraform": {
+    "context7": {
       "command": "docker",
       "args": [
         "run",
         "-i",
         "--rm",
-        "hashicorp/terraform-mcp-server"
+        "mcp/context7"
       ]
     }
   }
