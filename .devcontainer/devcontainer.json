@@ -40,7 +40,9 @@
   "remoteUser": "node",
   "mounts": [
     "source=claude-code-bashhistory,target=/commandhistory,type=volume",
-    "source=claude-code-config,target=/home/node/.claude,type=volume"
+    "source=claude-code-config,target=/home/node/.claude,type=volume",
+    "source=claude-code-docker,target=/var/run/docker.sock,type=bind,consistency=delegated"
+
   ],
   "remoteEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",
