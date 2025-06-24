@@ -6,10 +6,7 @@
       "TZ": "${localEnv:TZ:Australia/Sydney}"
     }
   },
-  "runArgs": [
-    "--cap-add=NET_ADMIN",
-    "--cap-add=NET_RAW"
-  ],
+  "runArgs": ["--cap-add=NET_ADMIN", "--cap-add=NET_RAW"],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -18,7 +15,8 @@
         "hashicorp.terraform",
         "Anthropic.claude-code",
         "redhat.vscode-yaml",
-        "ms-azuretools.vscode-azure-github-copilot"
+        "ms-azuretools.vscode-azure-github-copilot",
+        "HashiCorp.HCL"
       ],
       "settings": {
         "editor.formatOnSave": true,
