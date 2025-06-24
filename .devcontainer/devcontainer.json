@@ -15,9 +15,10 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "eamodio.gitlens",
         "hashicorp.terraform",
-        "anthropic.claude-code"
+        "Anthropic.claude-code",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-azure-github-copilot"
       ],
       "settings": {
         "editor.formatOnSave": true,
