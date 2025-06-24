@@ -90,6 +90,10 @@ RUN npm install -g @anthropic-ai/claude-code
 USER root
 RUN groupadd -f docker && usermod -aG docker node
 
+# Grant sudo privileges to node user for Docker commands without password
+RUN echo "node ALL=(ALL) NOPASSWD: /usr/bin/docker" >> /etc/sudoers.d/node-docker && \
+    chmod 0440 /etc/sudoers.d/node-docker
+
 # Copy library scripts
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN chmod +x /tmp/library-scripts/*.sh

@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "terraform": {
-      "command": "docker",
+      "command": "sudo docker",
       "args": [
         "run",
         "-i",
