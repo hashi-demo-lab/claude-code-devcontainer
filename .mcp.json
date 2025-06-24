@@ -6,7 +6,6 @@
         "run",
         "-i",
         "--rm",
-        "--network=host",
         "hashicorp/terraform-mcp-server"
       ]
     }
