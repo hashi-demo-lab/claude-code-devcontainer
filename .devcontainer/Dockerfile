@@ -36,14 +36,8 @@ RUN apt update && apt install -y less \
   python3-pip \
   python3-venv \
   python3-full \
-  jq
-
-# Install Docker CLI for MCP servers
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
-  echo "deb [arch=amd64] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  tee /etc/apt/sources.list.d/docker.list && \
-  apt-get update && \
-  apt-get install -y docker-ce-cli
+  jq \
+  docker.io
 
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
