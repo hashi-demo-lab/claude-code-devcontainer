@@ -14,23 +14,7 @@ ARG TFLINT_GCP_RULESET_VERSION="0.23.1"
 ARG INFRACOST_VERSION="0.10.41"
 ARG CHECKOV_VERSION="3.2.439"
 
-# Copy library scripts
-COPY library-scripts/*.sh /tmp/library-scripts/
-RUN chmod +x /tmp/library-scripts/*.sh
 
-USER root
-
-RUN /tmp/library-scripts/terraform-tools.sh \
-    "${TERRAFORM_VERSION}" \
-    "${TERRAFORM_DOCS_VERSION}" \
-    "${TFSEC_VERSION}" \
-    "${TERRASCAN_VERSION}" \
-    "${TFLINT_VERSION}" \
-    "${TFLINT_AWS_RULESET_VERSION}" \
-    "${TFLINT_AZURE_RULESET_VERSION}" \
-    "${TFLINT_GCP_RULESET_VERSION}" \
-    "${INFRACOST_VERSION}" \
-    "${CHECKOV_VERSION}"
 
 # Install basic development tools and iptables/ipset
 RUN apt update && apt install -y less \
@@ -97,6 +81,24 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code
+
+# Copy library scripts
+COPY library-scripts/*.sh /tmp/library-scripts/
+RUN chmod +x /tmp/library-scripts/*.sh
+
+RUN /tmp/library-scripts/terraform-tools.sh \
+    "${TERRAFORM_VERSION}" \
+    "${TERRAFORM_DOCS_VERSION}" \
+    "${TFSEC_VERSION}" \
+    "${TERRASCAN_VERSION}" \
+    "${TFLINT_VERSION}" \
+    "${TFLINT_AWS_RULESET_VERSION}" \
+    "${TFLINT_AZURE_RULESET_VERSION}" \
+    "${TFLINT_GCP_RULESET_VERSION}" \
+    "${INFRACOST_VERSION}" \
+    "${CHECKOV_VERSION}"
+
+
 
 # # Copy and set up firewall script
 # COPY init-firewall.sh /usr/local/bin/
