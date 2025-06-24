@@ -17,7 +17,7 @@
         "esbenp.prettier-vscode",
         "eamodio.gitlens",
         "hashicorp.terraform",
-        "anthropic.claude-code",
+        "anthropic.claude-code"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -50,5 +50,6 @@
     "CLAUDE_GITHUB_MCP_ENABLED": "true"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/workspace"
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "/bin/bash .devcontainer/post-create.sh"
 }

@@ -69,11 +69,6 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code
 
-# Install GitHub MCP extension for Claude Code
-USER root
-RUN gh extension install anthropic/gh-claude
-USER node
-
 # # Copy and set up firewall script
 # COPY init-firewall.sh /usr/local/bin/
 # USER root
