@@ -94,10 +94,11 @@ RUN groupadd -f wheel && usermod -aG wheel node
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/wheel-group && \
     chmod 0440 /etc/sudoers.d/wheel-group
 
-# Install uvx for AWS Labs Terraform MCP server using pipx
-RUN apt-get update && apt-get install -y pipx && \
+# Install build dependencies and uvx for AWS Labs Terraform MCP server
+RUN apt-get update && \
+    apt-get install -y pipx python3-dev build-essential python3-pip && \
     pipx ensurepath && \
-    pipx install uvx && \
+    pipx install uvx || (cat /root/.local/pipx/logs/*_pip_errors.log && false) && \
     # Make sure the pipx binary path is in common locations
     ln -sf /root/.local/bin/uvx /usr/bin/uvx && \
     # Make sure permissions are correct for all users
