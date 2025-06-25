@@ -7,11 +7,9 @@
     }
   },
   "runArgs": [
-    "--cap-add=NET_ADMIN",
+    "--cap-add=NET_ADMIN", 
     "--cap-add=NET_RAW",
-    "--privileged",
-    "--env-file",
-    "${localWorkspaceFolder}/.devcontainer/devcontainer.env"
+    "--privileged"
   ],
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -55,7 +53,6 @@
     "source=claude-code-bashhistory,target=/commandhistory,type=volume",
     "source=claude-code-config,target=/home/node/.claude,type=volume"
   ],
-  // Keep non-sensitive variables here
   "remoteEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
