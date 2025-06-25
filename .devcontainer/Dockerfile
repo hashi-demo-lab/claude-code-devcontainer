@@ -94,6 +94,19 @@ RUN groupadd -f wheel && usermod -aG wheel node
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/wheel-group && \
     chmod 0440 /etc/sudoers.d/wheel-group
 
+# Install uvx for AWS Labs Terraform MCP server
+RUN pip install uvx && \
+    # Ensure uvx is in common PATH locations
+    ln -sf /usr/local/bin/uvx /usr/bin/uvx && \
+    # Make sure permissions are correct for all users
+    chmod 755 /usr/local/bin/uvx && \
+    chmod 755 /usr/bin/uvx && \
+    # Verify installation
+    which uvx && \
+    # Ensure node user has path set correctly in their profile
+    echo 'export PATH=$PATH:/usr/local/bin:/usr/bin' >> /home/node/.zshrc && \
+    chown node:node /home/node/.zshrc
+
 # Copy library scripts
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN chmod +x /tmp/library-scripts/*.sh
