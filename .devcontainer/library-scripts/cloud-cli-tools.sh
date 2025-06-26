@@ -21,13 +21,13 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt-get update && sudo apt-get install -y google-cloud-cli
 
 # # Create directories for credentials
-# mkdir -p /home/vscode/.aws
-# mkdir -p /home/vscode/.azure
-# mkdir -p /home/vscode/.config/gcloud
+mkdir -p /home/node/.aws
+mkdir -p /home/node/.azure
+mkdir -p /home/node/.config/gcloud
 
-# # Set proper ownership
-# chown -R vscode:vscode /home/vscode/.aws
-# chown -R vscode:vscode /home/vscode/.azure
-# chown -R vscode:vscode /home/vscode/.config/gcloud
+# Set proper ownership
+chown -R node:node /home/node/.aws
+chown -R node:node /home/node/.azure
+chown -R node:node /home/node/.config/gcloud
 
-# echo "Cloud CLI tools installation complete!"
+echo "Cloud CLI tools installation complete!"
