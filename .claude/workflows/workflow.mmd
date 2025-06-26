@@ -2,7 +2,7 @@
 config:
   layout: elk
   look: classic
-  theme: neo
+  theme: mc
 ---
 flowchart TD
  subgraph Legend["Legend"]
@@ -12,7 +12,8 @@ flowchart TD
         L4["System/Process"]
         L5{"Decision Point"}
   end
-    A0["Create Module Repo<br>from Template"] --> A["Create GitHub Issue:<br>Terraform Module Development"]
+    START(["🚀 START:<br>New Module Request"]) --> A0["Create Module Repo<br>from Template"]
+    A0 --> A["Create GitHub Issue:<br>Terraform Module Development"]
     A --> B["AI-Assisted Planning"]
     B --> B1["Requirements Analysis<br>Technical &amp; Security"] & B2["Resource Research<br>Best Practices"]
     B1 --> C["Create Architecture Design<br>with AI assistance"]
@@ -50,12 +51,15 @@ flowchart TD
     R --> S["Monitor & Validate"]
     S --> T{"Deployment Success?"}
     T -- Issues Found --> U["Create New Issue<br>for Fixes"]
+    U --> END2(["🔄 END:<br>Continue to Fix Cycle"])
     T -- Success --> V["Complete<br>Close Original Issue"]
+    V --> END1(["✅ END:<br>Module Successfully Deployed"])
     style L1 fill:#2196F3,color:#fff
     style L2 fill:#4CAF50,color:#fff
     style L3 fill:#9C27B0,color:#fff
     style L4 fill:#757575,color:#fff
     style L5 fill:#FF9800,color:#fff
+    style START fill:#00C853,stroke:#00C853,color:#fff,stroke-width:3px
     style A0 fill:#9C27B0,color:#fff
     style A fill:#9C27B0,color:#fff
     style B fill:#9C27B0,color:#fff
@@ -70,6 +74,7 @@ flowchart TD
     style E fill:#9C27B0,color:#fff
     style F fill:#9C27B0,color:#fff
     style G fill:#9C27B0,color:#fff
+    style H fill:#757575,color:#fff
     style H1 fill:#4CAF50,color:#fff
     style H2 fill:#4CAF50,color:#fff
     style H3 fill:#4CAF50,color:#fff
@@ -77,6 +82,7 @@ flowchart TD
     style I fill:#FF9800,color:#fff
     style I1 fill:#9C27B0,color:#fff
     style J fill:#9C27B0,color:#fff
+    style K fill:#757575,color:#fff
     style K1 fill:#4CAF50,color:#fff
     style K2 fill:#4CAF50,color:#fff
     style L fill:#FF9800,color:#fff
@@ -89,4 +95,6 @@ flowchart TD
     style S fill:#4CAF50,color:#fff
     style T fill:#FF9800,color:#fff
     style U fill:#2196F3,color:#fff
+    style END2 fill:#FF6D00,stroke:#FF6D00,color:#fff,stroke-width:3px
     style V fill:#757575,color:#fff
+    style END1 fill:#00C853,stroke:#00C853,color:#fff,stroke-width:3px
