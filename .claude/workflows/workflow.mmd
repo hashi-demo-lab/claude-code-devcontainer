@@ -1,0 +1,43 @@
+---
+config:
+  theme: neo
+  layout: elk
+---
+flowchart TD
+    A["Create Issue"] --> B["AI-Assisted Planning"]
+    B --> B1["Requirements Analysis<br>Technical &amp; Security"] & B2["Resource Research<br>Best Practices"]
+    B1 --> C["Create Architecture Design<br>with AI assistance"]
+    B2 --> C
+    C --> C1["Create Design PR<br>Architecture docs/diagrams"]
+    C1 --> C2["Architecture Review"]
+    C2 --> C3{"Design Approved?"}
+    C3 -- Changes Requested --> C4["Update Design<br>Push Updates"]
+    C4 --> C2
+    C3 -- Approved --> D["Create Feature Branch<br>Pre-commit hooks ready"]
+    D --> E["Development with AI"]
+    E --> F["Write Tests"]
+    F --> G["Write Code<br>AI pair programming"]
+    G --> H["Local Validation"]
+    H --> H1["terraform test"] & H2["TFLint Check"] & H3["terraform validate"] & H4["tf-policy check"]
+    H1 --> I{"All Pass?"}
+    H2 --> I
+    H3 --> I
+    H4 --> I
+    I -- No --> I1["Fix Issues Locally"]
+    I1 --> H
+    I -- Yes --> J["Create Implementation PR"]
+    J --> K["PR Automated Checks"]
+    K --> K1["CI/CD Pipeline:<br>terraform tests, TFLint, Policy, Security Scans"] & K2["AI Code Review<br>Comments on PR"]
+    K1 --> L{"All Checks Pass?"}
+    K2 --> L
+    L -- No --> M["Fix Issues in PR<br>Push Updates"]
+    M --> K
+    L -- Yes --> N["PR Human Review"]
+    N --> O{"PR Approved?"}
+    O -- Changes Requested --> P["Address Review Comments<br>Push Updates"]
+    P --> K
+    O -- Approved --> Q["Merge PR to Main"]
+    Q --> R["Deploy via Pipeline"]
+    R --> S["Monitor & Validate"]
+    S --> T{"Deployment Success?"}
+    T -- Issues Found --> U["Create New Issue<br>for Fixes"]
