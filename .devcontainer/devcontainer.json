@@ -61,5 +61,4 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "/bin/bash .devcontainer/post-create.sh"
 }
