@@ -1,6 +1,6 @@
-# 🚀 Claude Code DevContainer
+# 🚀 Claude Code DevContainer & Terraform Module Workflow
 
-A development container configuration for working with Claude Code and Claude GitHub integration. This repository provides a secure, isolated environment for development with pre-configured tools and settings optimized for AI-assisted coding.
+A development container configuration for working with Claude Code and Claude GitHub integration, with comprehensive Terraform module development workflows. This repository provides a secure, isolated environment for development with pre-configured tools and settings optimized for AI-assisted coding and infrastructure development.
 
 ## 🛠️ Setup
 
@@ -115,6 +115,94 @@ To add your own MCP servers:
 
 For more information, see the [Claude Code MCP documentation](https://docs.anthropic.com/en/docs/claude-code/mcp).
 
-## �🤝 Contributing
+## 🏗️ Terraform Module Development Workflow
+
+This repository includes a complete workflow for creating and managing Terraform modules using slash commands and GitHub CLI.
+
+### Quick Start
+
+```bash
+# Set your template repository
+export TF_TEMPLATE_REPO="your-org/terraform-module-template"
+
+# Create new module
+/create-tf-module vpc aws "VPC module for AWS infrastructure"
+
+# Setup and configure
+cd terraform-aws-vpc
+/setup-tf-module vpc aws "VPC module with subnets and routing"
+
+# Validate and test
+/validate-tf-module
+/docs-tf-module
+
+# Commit initial version
+/commit-tf-module "Initial module implementation"
+```
+
+### Available Commands
+
+#### Module Creation
+- `/create-tf-module <name> <provider> [description]` - Create public module
+- `/create-tf-module-private <name> <provider> [description]` - Create private module
+- `/create-tf-module-org <org> <name> <provider> [description]` - Create org module
+- `/new-tf-module <name> <provider> [description]` - Complete creation workflow
+
+#### Module Development
+- `/setup-tf-module <name> <provider> [description]` - Configure module from template
+- `/validate-tf-module` - Format, validate, lint, and security scan
+- `/docs-tf-module` - Generate documentation with terraform-docs
+- `/test-tf-module` - Run tests and validate examples
+- `/commit-tf-module [message]` - Commit and push changes
+
+#### GitHub CLI Aliases
+- `gh tf-new <provider> <module>` - Create public module
+- `gh tf-pr` - Create pull request with template
+- `gh tf-ci` - Run CI workflow
+- `gh tf-release <version>` - Create release
+- `gh tf-view` - View repository in browser
+
+### Documentation
+- **[tf-module-commands.md](.claude/commands/tf-module-commands.md)** - Slash commands for module creation
+- **[tf-module-setup.md](.claude/commands/tf-module-setup.md)** - Post-creation setup and automation  
+- **[gh-aliases.md](.claude/commands/gh-aliases.md)** - GitHub CLI aliases and shortcuts
+
+### Prerequisites for Module Development
+- GitHub CLI authenticated (`gh auth login`)
+- Template repository set (`export TF_TEMPLATE_REPO="your-org/template"`)
+- Access to your Terraform module template repository
+
+### Example Workflow
+```bash
+# 1. Create AWS VPC module
+/create-tf-module vpc aws "VPC with public/private subnets"
+
+# 2. Enter directory and setup
+cd terraform-aws-vpc
+/setup-tf-module vpc aws "VPC with public/private subnets"
+
+# 3. Develop module (edit .tf files)
+
+# 4. Validate and document
+/validate-tf-module
+/docs-tf-module
+
+# 5. Test examples
+/test-tf-module
+
+# 6. Commit initial version
+/commit-tf-module "Initial VPC module with subnets and routing"
+
+# 7. Create feature branch for development
+git checkout -b feature/add-nat-gateway
+
+# 8. After changes, create PR
+gh tf-pr
+
+# 9. After merge, create release
+gh tf-release 1.0.0
+```
+
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
