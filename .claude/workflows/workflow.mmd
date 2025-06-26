@@ -4,6 +4,13 @@ config:
   layout: elk
 ---
 flowchart TD
+ subgraph Legend["Legend"]
+        L1["Human Only"]
+        L2["AI Only"]
+        L3["Human-AI Pair"]
+        L4["System/Process"]
+        L5{"Decision Point"}
+  end
     A["Create Issue"] --> B["AI-Assisted Planning"]
     B --> B1["Requirements Analysis<br>Technical &amp; Security"] & B2["Resource Research<br>Best Practices"]
     B1 --> C["Create Architecture Design<br>with AI assistance"]
@@ -17,8 +24,8 @@ flowchart TD
     D --> E["Development with AI"]
     E --> F["Write Tests"]
     F --> G["Write Code<br>AI pair programming"]
-    G --> H["Local Validation"]
-    H --> H1["terraform test"] & H2["TFLint Check"] & H3["terraform validate"] & H4["tf-policy check"]
+    G --> H["DevContainer local validation"]
+    H --> H1["Terraform Test"] & H2["TFLint Check"] & H3["Terraform Validate"] & H4["TF-Policy Check"]
     H1 --> I{"All Pass?"}
     H2 --> I
     H3 --> I
@@ -27,7 +34,7 @@ flowchart TD
     I1 --> H
     I -- Yes --> J["Create Implementation PR"]
     J --> K["PR Automated Checks"]
-    K --> K1["CI/CD Pipeline:<br>terraform tests, TFLint, Policy, Security Scans"] & K2["AI Code Review<br>Comments on PR"]
+    K --> K1["CI/CD Pipeline:<br>Terraform Test, TFLint, Policy, Security Scans"] & K2["AI Code Review<br>Comments on PR"]
     K1 --> L{"All Checks Pass?"}
     K2 --> L
     L -- No --> M["Fix Issues in PR<br>Push Updates"]
@@ -41,3 +48,42 @@ flowchart TD
     R --> S["Monitor & Validate"]
     S --> T{"Deployment Success?"}
     T -- Issues Found --> U["Create New Issue<br>for Fixes"]
+    T -- Success --> V["Complete<br>Close Original Issue"]
+    style A fill:#2196F3,color:#fff
+    style B fill:#9C27B0,color:#fff
+    style B1 fill:#9C27B0,color:#fff
+    style B2 fill:#4CAF50,color:#fff
+    style C fill:#9C27B0,color:#fff
+    style C1 fill:#2196F3,color:#fff
+    style C2 fill:#2196F3,color:#fff
+    style C3 fill:#FF9800,color:#fff
+    style C4 fill:#9C27B0,color:#fff
+    style D fill:#757575,color:#fff
+    style E fill:#9C27B0,color:#fff
+    style F fill:#9C27B0,color:#fff
+    style G fill:#9C27B0,color:#fff
+    style H1 fill:#4CAF50,color:#fff
+    style H2 fill:#4CAF50,color:#fff
+    style H3 fill:#4CAF50,color:#fff
+    style H4 fill:#4CAF50,color:#fff
+    style I fill:#FF9800,color:#fff
+    style I1 fill:#9C27B0,color:#fff
+    style J fill:#2196F3,color:#fff
+    style K1 fill:#4CAF50,color:#fff
+    style K2 fill:#4CAF50,color:#fff
+    style L fill:#FF9800,color:#fff
+    style M fill:#9C27B0,color:#fff
+    style N fill:#2196F3,color:#fff
+    style O fill:#FF9800,color:#fff
+    style P fill:#9C27B0,color:#fff
+    style Q fill:#757575,color:#fff
+    style R fill:#4CAF50,color:#fff
+    style S fill:#4CAF50,color:#fff
+    style T fill:#FF9800,color:#fff
+    style U fill:#2196F3,color:#fff
+    style V fill:#757575,color:#fff
+    style L1 fill:#2196F3,color:#fff
+    style L2 fill:#4CAF50,color:#fff
+    style L3 fill:#9C27B0,color:#fff
+    style L4 fill:#757575,color:#fff
+    style L5 fill:#FF9800,color:#fff
