@@ -1,6 +1,9 @@
 {
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "context7"
-  ],
-  "enableAllProjectMcpServers": true
+    "terraform",
+    "awslabs.terraform-mcp-server",
+    "context7",
+    "sequential-thinking"
+  ]
 }
