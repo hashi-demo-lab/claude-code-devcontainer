@@ -1,100 +1,137 @@
 ---
 config:
-  layout: elk
-  look: classic
-  theme: mc
+  theme: neo
+  flowchart:
+    curve: basis
 ---
-flowchart TD
- subgraph Legend["Legend"]
-        L1["Human Only"]
-        L2["AI Only"]
-        L3["Human-AI Pair"]
-        L4["System/Process"]
-        L5{"Decision Point"}
-  end
-    START(["🚀 START:<br>New Module Request"]) --> A0["Create Module Repo<br>from Template"]
-    A0 --> A["Create GitHub Issue:<br>Terraform Module Development"]
-    A --> B["AI-Assisted Planning"]
-    B --> B1["Requirements Analysis<br>Technical &amp; Security"] & B2["Resource Research<br>Best Practices"]
-    B1 --> C["Create Architecture Design<br>with AI assistance"]
-    B2 --> C
-    C --> C1["Create Design PR<br>Architecture docs/diagrams"]
-    C1 --> C2["Architecture Review"]
-    C2 --> C3{"Design Approved?"}
-    C3 -- Changes Requested --> C4["Update Design<br>Push Updates"]
+flowchart TB
+    %% Legend at top
+    subgraph LEGEND["🔑 LEGEND"]
+        direction LR
+        L1["👤 Human Only"]
+        L2["🤖 AI Only"]
+        L3["👥 Human-AI Pair"]
+        L4["🔄 CI/CD Pipeline"]
+        L5["⚙️ System/Process"]
+        L6{"❓ Decision Point"}
+    end
+    
+    %% Start
+    START(["▶️ START<br>New Module Request"])
+    
+    %% Initial Setup
+    START --> A0["📂 Create Module Repo<br>from Template"]
+    A0 --> A["📋 Create GitHub Issue<br>Terraform Module Development"]
+    
+    %% Planning & Design
+    A --> B["🧠 AI-Assisted Planning"]
+    B --> B1["🛡️ Requirements Analysis<br>Technical & Security"]
+    B --> B2["🔍 Resource Research<br>Best Practices"]
+    B1 & B2 --> C["📐 Create Architecture Design<br>with AI assistance"]
+    C --> C1["📄 Create Design PR<br>Architecture docs/diagrams"]
+    C1 --> C2["👤 Architecture Review"]
+    C2 --> C3{"✅ Design Approved?"}
+    C3 -->|Changes Requested| C4["✏️ Update Design<br>Push Updates"]
     C4 --> C2
-    C3 -- Approved --> D["Create Feature Branch<br>Pre-commit hooks ready"]
-    D --> E["Development with AI"]
-    E --> F["Write Tests"]
-    F --> G["Write Code<br>AI pair programming"]
-    G --> H["Local Validation DevContainer"]
-    H --> H1["Terraform Test"] & H2["TFLint Check"] & H3["Terraform Validate"] & H4["TF-Policy Check"]
-    H1 --> I{"All Pass?"}
-    H2 --> I
-    H3 --> I
-    H4 --> I
-    I -- No --> I1["Fix Issues Locally"]
+    
+    %% Development
+    C3 -->|Approved| E["💻 Development with AI"]
+    E --> D["🌿 Create Feature Branch<br>Pre-commit hooks ready"]
+    D --> F["🧪 Write Tests"]
+    F --> G["⌨️ Write Code<br>AI pair programming"]
+    
+    %% Local Testing
+    G --> H["🐳 Local Validation<br>DevContainer"]
+    H --> H1["✔️ Terraform Test"]
+    H --> H2["✔️ TFLint Check"]
+    H --> H3["✔️ Terraform Validate"]
+    H --> H4["✔️ TF-Policy Check"]
+    H1 & H2 & H3 & H4 --> I{"🚦 All Pass?"}
+    I -->|No| I1["🔧 Fix Issues Locally"]
     I1 --> H
-    I -- Yes --> J["Create Implementation PR"]
-    J --> K["PR Automated Checks"]
-    K --> K1["CI/CD Pipeline:<br>Terraform Test, TFLint, Policy, Security Scans"] & K2["AI Code Review<br>Comments on PR"]
-    K1 --> L{"All Checks Pass?"}
-    K2 --> L
-    L -- No --> M["Fix Issues in PR<br>Push Updates"]
+    
+    %% PR & Review
+    I -->|Yes| J["🔀 Create Implementation PR"]
+    J --> K["📋 PR Automated Checks"]
+    K --> K1["🤖 CI/CD Pipeline<br>Tests, Lint, Policy, Security"]
+    K --> K2["💬 AI Code Review<br>Comments on PR"]
+    K1 & K2 --> L{"🛡️ All Checks Pass?"}
+    L -->|No| M["🛠️ Fix Issues in PR<br>Push Updates"]
     M --> K
-    L -- Yes --> N["PR Human Review"]
-    N --> O{"PR Approved?"}
-    O -- Changes Requested --> P["Address Review Comments<br>Push Updates"]
+    L -->|Yes| N["👤 PR Human Review<br>Label: semver"]
+    N --> O{"👍 PR Approved?"}
+    O -->|Changes Requested| P["💬 Address Review Comments<br>Push Updates"]
     P --> K
-    O -- Approved --> Q["Merge PR to Main"]
-    Q --> R["Deploy via Pipeline"]
-    R --> S["Monitor & Validate"]
-    S --> T{"Deployment Success?"}
-    T -- Issues Found --> U["Create New Issue<br>for Fixes"]
-    U --> END2(["🔄 END:<br>Continue to Fix Cycle"])
-    T -- Success --> V["Complete<br>Close Original Issue"]
-    V --> END1(["✅ END:<br>Module Successfully Deployed"])
-    style L1 fill:#2196F3,color:#fff
-    style L2 fill:#4CAF50,color:#fff
-    style L3 fill:#9C27B0,color:#fff
-    style L4 fill:#757575,color:#fff
-    style L5 fill:#FF9800,color:#fff
-    style START fill:#00C853,stroke:#00C853,color:#fff,stroke-width:3px
-    style A0 fill:#9C27B0,color:#fff
-    style A fill:#9C27B0,color:#fff
-    style B fill:#9C27B0,color:#fff
-    style B1 fill:#9C27B0,color:#fff
-    style B2 fill:#4CAF50,color:#fff
-    style C fill:#9C27B0,color:#fff
-    style C1 fill:#9C27B0,color:#fff
-    style C2 fill:#2196F3,color:#fff
-    style C3 fill:#FF9800,color:#fff
-    style C4 fill:#9C27B0,color:#fff
-    style D fill:#757575,color:#fff
-    style E fill:#9C27B0,color:#fff
-    style F fill:#9C27B0,color:#fff
-    style G fill:#9C27B0,color:#fff
-    style H fill:#757575,color:#fff
-    style H1 fill:#4CAF50,color:#fff
-    style H2 fill:#4CAF50,color:#fff
-    style H3 fill:#4CAF50,color:#fff
-    style H4 fill:#4CAF50,color:#fff
-    style I fill:#FF9800,color:#fff
-    style I1 fill:#9C27B0,color:#fff
-    style J fill:#9C27B0,color:#fff
-    style K fill:#757575,color:#fff
-    style K1 fill:#4CAF50,color:#fff
-    style K2 fill:#4CAF50,color:#fff
-    style L fill:#FF9800,color:#fff
-    style M fill:#9C27B0,color:#fff
-    style N fill:#2196F3,color:#fff
-    style O fill:#FF9800,color:#fff
-    style P fill:#9C27B0,color:#fff
-    style Q fill:#757575,color:#fff
-    style R fill:#4CAF50,color:#fff
-    style S fill:#4CAF50,color:#fff
-    style T fill:#FF9800,color:#fff
-    style U fill:#2196F3,color:#fff
-    style END2 fill:#FF6D00,stroke:#FF6D00,color:#fff,stroke-width:3px
-    style V fill:#757575,color:#fff
-    style END1 fill:#00C853,stroke:#00C853,color:#fff,stroke-width:3px
+    
+    %% Deployment
+    O -->|Approved| Q["🔀 Merge PR to Main"]
+    Q --> R["🚀 Deploy via Pipeline"]
+    R --> S["📊 Monitor & Validate"]
+    S --> T{"💚 Deployment Success?"}
+    
+    %% End States
+    T -->|Issues Found| U["⚠️ Create New Issue<br>for Fixes"]
+    U --> END2(["🔄 END<br>Continue to Fix Cycle"])
+    T -->|Success| V["🏷️ Release<br>Module Semantic Version"]
+    V --> W["✅ Complete<br>Close Original Issue"]
+    W --> END1(["🎯 END<br>Module Successfully Deployed"])
+    
+    %% Apply all styles
+    L1:::human
+    L2:::ai
+    L3:::pair
+    L4:::cicd
+    L5:::system
+    L6:::decision
+    START:::start
+    A0:::pair
+    A:::pair
+    B:::pair
+    B1:::pair
+    B2:::ai
+    C:::pair
+    C1:::pair
+    C2:::human
+    C3:::decision
+    C4:::pair
+    E:::pair
+    D:::pair
+    F:::pair
+    G:::pair
+    H:::system
+    H1:::ai
+    H2:::ai
+    H3:::ai
+    H4:::ai
+    I:::decision
+    I1:::pair
+    J:::pair
+    K:::system
+    K1:::cicd
+    K2:::ai
+    L:::decision
+    M:::pair
+    N:::human
+    O:::decision
+    P:::pair
+    Q:::system
+    R:::cicd
+    S:::cicd
+    T:::decision
+    U:::human
+    END2:::endwarn
+    V:::cicd
+    W:::system
+    END1:::endsuccess
+    
+    classDef start fill:#1e40af,stroke:#1e3a8a,color:#fff,stroke-width:4px,font-weight:bold
+    classDef endsuccess fill:#059669,stroke:#047857,color:#fff,stroke-width:4px,font-weight:bold
+    classDef endwarn fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:3px,font-weight:bold
+    classDef human fill:#3b82f6,stroke:#2563eb,color:#fff,stroke-width:2px,font-weight:bold
+    classDef ai fill:#22c55e,stroke:#16a34a,color:#fff,stroke-width:2px,font-weight:bold
+    classDef cicd fill:#06b6d4,stroke:#0891b2,color:#fff,stroke-width:2px,font-weight:bold
+    classDef pair fill:#a855f7,stroke:#9333ea,color:#fff,stroke-width:2px,font-weight:bold
+    classDef system fill:#6b7280,stroke:#4b5563,color:#fff,stroke-width:2px,font-weight:bold
+    classDef decision fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:3px,font-weight:bold
+    
+    style LEGEND fill:#1f2937,stroke:#374151,stroke-width:2px,color:#f9fafb,font-weight:bold
