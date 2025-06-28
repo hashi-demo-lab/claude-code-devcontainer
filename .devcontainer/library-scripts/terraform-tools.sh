@@ -84,12 +84,17 @@ echo "Installing Checkov v${CHECKOV_VERSION} in virtual environment..."
 # Install python3-venv if not already installed
 sudo apt-get update && sudo apt-get install -y python3-venv
 
+VENV_DIR="/opt/precommit-venv"
+sudo python3 -m venv ${VENV_DIR}
+sudo ${VENV_DIR}/bin/pip install --user -U pre-commit && pre-commit install-hooks
+
 # Create a virtual environment for Checkov
 VENV_DIR="/opt/checkov-venv"
 sudo python3 -m venv ${VENV_DIR}
 
 # Install Checkov in the virtual environment
 sudo ${VENV_DIR}/bin/pip install checkov==${CHECKOV_VERSION}
+
 
 # Create a wrapper script for Checkov
 sudo tee /usr/local/bin/checkov > /dev/null << EOL
