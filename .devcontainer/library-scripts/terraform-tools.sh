@@ -93,6 +93,8 @@ sudo tee /usr/local/bin/pre-commit > /dev/null << EOL
 ${VENV_DIR}/bin/pre-commit \$@
 EOL
 
+sudo chmod +x /usr/local/bin/pre-commit
+
 # Create a virtual environment for Checkov
 VENV_DIR="/opt/checkov-venv"
 sudo python3 -m venv ${VENV_DIR}
