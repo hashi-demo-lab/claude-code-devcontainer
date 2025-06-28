@@ -86,14 +86,10 @@ sudo apt-get update && sudo apt-get install -y python3-venv
 
 VENV_DIR="/opt/precommit-venv"
 sudo python3 -m venv ${VENV_DIR}
-sudo ${VENV_DIR}/bin/pip install --user -U pre-commit && pre-commit install-hooks
-# Create a wrapper script for pre-commit
-sudo tee /usr/local/bin/pre-commit > /dev/null << EOL
-#!/bin/bash
-${VENV_DIR}/bin/pre-commit \$@
-EOL
+sudo ${VENV_DIR}/bin/pip install -U pre-commit
 
-sudo chmod +x /usr/local/bin/pre-commit
+# Add to PATH instead of sourcing (cleaner for system-wide install)
+echo 'export PATH="/opt/precommit-venv/bin:$PATH"' >> ~/.zshrc
 
 # Create a virtual environment for Checkov
 VENV_DIR="/opt/checkov-venv"
