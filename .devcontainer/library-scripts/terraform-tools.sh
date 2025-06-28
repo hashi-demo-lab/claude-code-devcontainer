@@ -61,15 +61,15 @@ unzip -qq /tmp/tflint-gcp-ruleset.zip -d ~/.tflint.d/plugins
 rm -f /tmp/tflint-gcp-ruleset.zip
 
 # Install Go if not already installed
-if ! command -v go &> /dev/null; then
-    echo "Installing Go (required for Terratest)..."
-    GO_VERSION="1.20.5"
-    curl -sSLo /tmp/go.tar.gz "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz"
-    sudo tar -C /usr/local -xzf /tmp/go.tar.gz
-    echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/node/.bashrc
-    echo 'export PATH=$PATH:$HOME/go/bin' >> /home/node/.bashrc
-    rm -f /tmp/go.tar.gz
-fi
+# if ! command -v go &> /dev/null; then
+#     echo "Installing Go (required for Terratest)..."
+#     GO_VERSION="1.20.5"
+#     curl -sSLo /tmp/go.tar.gz "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz"
+#     sudo tar -C /usr/local -xzf /tmp/go.tar.gz
+#     echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/node/.bashrc
+#     echo 'export PATH=$PATH:$HOME/go/bin' >> /home/node/.bashrc
+#     rm -f /tmp/go.tar.gz
+# fi
 
 echo "Installing Infracost v${INFRACOST_VERSION}..."
 curl -sSLo /tmp/infracost.tar.gz "https://github.com/infracost/infracost/releases/download/v${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz"
@@ -78,7 +78,7 @@ sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
 rm -f /tmp/infracost.tar.gz
 
 echo "Installing pre-commit hooks..."
-#pip install --user -U pre-commit && pre-commit install-hooks
+pip install --user -U pre-commit && pre-commit install-hooks
 
 echo "Installing Checkov v${CHECKOV_VERSION} in virtual environment..."
 # Install python3-venv if not already installed
