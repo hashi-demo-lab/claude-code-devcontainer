@@ -78,7 +78,7 @@ sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
 rm -f /tmp/infracost.tar.gz
 
 echo "Installing pre-commit hooks..."
-pip install --user -U pre-commit && pre-commit install-hooks
+#pip install --user -U pre-commit && pre-commit install-hooks
 
 
 echo "Installing Checkov v${CHECKOV_VERSION} in virtual environment..."
