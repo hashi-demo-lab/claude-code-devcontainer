@@ -1,0 +1,205 @@
+name: "✨ Feature Request"
+description: "Request a new feature or enhancement for a Terraform module"
+title: "[FEATURE] "
+labels: ["enhancement", "feature-request", "needs-review"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Feature Request
+        
+        Thank you for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: input
+    id: module_name
+    attributes:
+      label: "📦 Module Name"
+      description: "Which module should this feature be added to?"
+      placeholder: "e.g., terraform-aws-vpc, or 'new module' if this requires a new module"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature_type
+    attributes:
+      label: "🎯 Feature Type"
+      description: "What type of feature are you requesting?"
+      options:
+        - New resource support
+        - New input variable
+        - New output variable
+        - Configuration option
+        - Security enhancement
+        - Performance improvement
+        - Documentation improvement
+        - New module entirely
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: "📝 Feature Description"
+      description: "A clear and detailed description of the feature you'd like to see"
+      placeholder: "Describe the feature and what it should do..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: "❓ Problem Statement"
+      description: "What problem does this feature solve? What's the use case?"
+      placeholder: |
+        Describe:
+        - What problem you're trying to solve
+        - Why the current module doesn't meet your needs
+        - What business or technical requirement drives this request
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: "💡 Proposed Solution"
+      description: "How do you envision this feature working?"
+      placeholder: |
+        Describe:
+        - How the feature should work
+        - What inputs/outputs it might need
+        - How it should integrate with existing functionality
+    validations:
+      required: true
+
+  - type: textarea
+    id: example_usage
+    attributes:
+      label: "📋 Example Usage"
+      description: "Show how you would use this feature"
+      placeholder: |
+        ```hcl
+        module "example" {
+          source = "..."
+          
+          # New feature usage
+          new_feature_enabled = true
+          new_feature_config = {
+            setting1 = "value1"
+            setting2 = "value2"
+          }
+        }
+        
+        # How you'd use the outputs
+        output "new_feature_result" {
+          value = module.example.new_feature_output
+        }
+        ```
+      render: hcl
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: "🔄 Alternatives Considered"
+      description: "What other solutions have you considered?"
+      placeholder: |
+        - Alternative approaches you've tried
+        - Workarounds you're currently using
+        - Other tools or modules you've evaluated
+        - Why those alternatives don't fully solve the problem
+
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: "📋 Requirements"
+      description: "What are the key requirements for this feature?"
+      options:
+        - label: "Must be backward compatible"
+        - label: "Should follow security best practices"
+        - label: "Must support multiple cloud regions"
+        - label: "Should be configurable/optional"
+        - label: "Must include comprehensive documentation"
+        - label: "Should include example configurations"
+        - label: "Must pass all security scans"
+        - label: "Should have minimal performance impact"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "⚡ Priority"
+      description: "How important is this feature to you?"
+      options:
+        - Critical - Blocking our work
+        - High - Important for our roadmap
+        - Medium - Would be helpful
+        - Low - Nice to have
+    validations:
+      required: true
+
+  - type: input
+    id: target_timeline
+    attributes:
+      label: "📅 Target Timeline"
+      description: "When do you need this feature? (if applicable)"
+      placeholder: "e.g., Q2 2024, before project launch, no specific timeline"
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "📈 Impact"
+      description: "What's the impact if this feature is implemented?"
+      placeholder: |
+        Describe:
+        - How this would improve your workflow
+        - Cost savings or efficiency gains
+        - Number of users/teams that would benefit
+        - Other positive outcomes
+
+  - type: textarea
+    id: resources_affected
+    attributes:
+      label: "🏗️ Resources Affected"
+      description: "What cloud resources would this feature create, modify, or affect?"
+      placeholder: |
+        Example:
+        - New AWS resources: aws_cloudwatch_log_group, aws_iam_role
+        - Modified resources: aws_vpc (add new tags)
+        - Configuration changes to: security groups, route tables
+
+  - type: checkboxes
+    id: security_considerations
+    attributes:
+      label: "🔒 Security Considerations"
+      description: "Are there any security implications for this feature?"
+      options:
+        - label: "This feature involves IAM permissions"
+        - label: "This feature handles sensitive data"
+        - label: "This feature affects network security"
+        - label: "This feature requires encryption"
+        - label: "This feature affects access controls"
+        - label: "No security implications identified"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "📄 Additional Context"
+      description: "Any other information that would help us understand this request"
+      placeholder: |
+        - Links to relevant documentation
+        - Screenshots or diagrams
+        - Related issues or discussions
+        - Integration requirements
+        - Any other relevant details
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: "🤝 Contribution"
+      description: "Would you be willing to contribute to implementing this feature?"
+      options:
+        - label: "I'm willing to submit a pull request for this feature"
+        - label: "I can help with testing the implementation"
+        - label: "I can help with documentation"
+        - label: "I can provide feedback during development"
+        - label: "I prefer to let the maintainers handle implementation"

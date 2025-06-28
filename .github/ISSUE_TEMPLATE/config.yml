@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "📖 Terraform Documentation"
+    url: "https://registry.terraform.io/browse/modules"
+    about: "Browse the official Terraform module registry for existing modules"
+  - name: "🛠️ Module Development Guide"
+    url: "https://developer.hashicorp.com/terraform/language/modules/develop"
+    about: "Official guide for developing Terraform modules"
+  - name: "🔒 Security Best Practices"
+    url: "https://developer.hashicorp.com/terraform/tutorials/configuration-language/sensitive-variables"
+    about: "Learn about Terraform security best practices and sensitive data handling"
+  - name: "💬 Community Discussion"
+    url: "https://discuss.hashicorp.com/c/terraform-core/27"
+    about: "Join the HashiCorp community discussion for general Terraform questions"

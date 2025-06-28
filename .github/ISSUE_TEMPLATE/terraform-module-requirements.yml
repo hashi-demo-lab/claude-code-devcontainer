@@ -1,0 +1,295 @@
+name: "📋 Terraform Module Requirements"
+description: "Template for capturing technical and security requirements for new Terraform modules"
+title: "[MODULE REQ] New Terraform Module Requirements"
+labels: ["module-requirements", "planning", "needs-review"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Terraform Module Requirements
+        
+        Use this template to capture comprehensive technical and security requirements for new Terraform modules.
+        
+        **📖 Reference Documentation:**
+        - [Module Development Workflow](/.claude/commands/tf-module-create-new-from-template.md)
+        - [Terraform Planning Framework](/.claude/CLAUDE.md)
+
+  - type: input
+    id: module_name
+    attributes:
+      label: "📦 Module Name"
+      description: "Module name following terraform-<PROVIDER>-<NAME> convention"
+      placeholder: "e.g., terraform-aws-vpc, terraform-azure-storage"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: "☁️ Cloud Provider"
+      description: "Primary cloud provider for this module"
+      options:
+        - AWS
+        - Azure
+        - GCP
+        - Multi-cloud
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: module_description
+    attributes:
+      label: "📝 Module Description"
+      description: "Brief description of what this module will accomplish"
+      placeholder: "Describe the infrastructure this module will manage..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: business_requirements
+    attributes:
+      label: "🎯 Business Requirements"
+      description: "Business use case and requirements driving this module"
+      placeholder: |
+        - Business problem this module solves
+        - Expected outcomes
+        - Success criteria
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: resources
+    attributes:
+      label: "🏗️ Infrastructure Resources"
+      description: "Select the types of resources this module will manage"
+      options:
+        - label: "Compute (EC2, VMs, Container instances)"
+        - label: "Networking (VPC, Subnets, Security Groups, Load Balancers)"
+        - label: "Storage (S3, EBS, Blob Storage, Disks)"
+        - label: "Databases (RDS, DynamoDB, CosmosDB, Cloud SQL)"
+        - label: "Security (IAM, Key Vault, Secrets Manager, KMS)"
+        - label: "Monitoring (CloudWatch, Azure Monitor, Cloud Monitoring)"
+        - label: "DNS (Route53, Azure DNS, Cloud DNS)"
+        - label: "CDN (CloudFront, Azure CDN, Cloud CDN)"
+        - label: "Containers (EKS, AKS, GKE, ECS, Container Registry)"
+        - label: "Serverless (Lambda, Functions, Cloud Functions)"
+        - label: "API Gateway"
+        - label: "Message Queues (SQS, Service Bus, Pub/Sub)"
+
+  - type: textarea
+    id: specific_resources
+    attributes:
+      label: "📋 Specific Resources List"
+      description: "List the exact resources this module will create"
+      placeholder: |
+        Example:
+        - aws_vpc
+        - aws_subnet (public/private)
+        - aws_internet_gateway
+        - aws_nat_gateway
+        - aws_route_table
+        - aws_security_group
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security_requirements
+    attributes:
+      label: "🔒 Security Requirements"
+      description: "Security controls and requirements"
+      options:
+        - label: "Encryption at rest (KMS, customer-managed keys)"
+        - label: "Encryption in transit (TLS/SSL, HTTPS)"
+        - label: "Network isolation (Private subnets, Security Groups, NACLs)"
+        - label: "IAM least privilege access"
+        - label: "Secrets management integration"
+        - label: "Audit logging and monitoring"
+        - label: "Backup and disaster recovery"
+        - label: "Data residency requirements"
+        - label: "Multi-factor authentication"
+        - label: "Certificate management"
+
+  - type: textarea
+    id: compliance_standards
+    attributes:
+      label: "📋 Compliance Standards"
+      description: "Compliance frameworks this module must adhere to"
+      placeholder: |
+        Example:
+        - SOC 2 Type II
+        - PCI DSS
+        - HIPAA
+        - GDPR
+        - FedRAMP
+        - CIS Benchmarks
+        - Company security policies
+
+  - type: textarea
+    id: security_controls
+    attributes:
+      label: "🛡️ Specific Security Controls"
+      description: "Detailed security controls and configurations required"
+      placeholder: |
+        Example:
+        - All S3 buckets must block public access
+        - RDS instances must use encryption at rest
+        - Security groups must follow least privilege
+        - All resources must be tagged for compliance
+        - VPC Flow Logs must be enabled
+
+  - type: textarea
+    id: terraform_constraints
+    attributes:
+      label: "⚙️ Terraform Technical Constraints"
+      description: "Terraform version and provider constraints"
+      placeholder: |
+        Example:
+        - Terraform >= 1.5.0
+        - AWS Provider >= 5.0.0
+        - Must use remote state backend
+        - Module should be registry-compatible
+    validations:
+      required: true
+
+  - type: textarea
+    id: input_variables
+    attributes:
+      label: "📥 Required Input Variables"
+      description: "Essential input variables the module must accept"
+      placeholder: |
+        Example:
+        - vpc_cidr: CIDR block for VPC (string, required)
+        - availability_zones: List of AZs (list(string), required)
+        - environment: Environment name (string, required)
+        - tags: Resource tags (map(string), optional)
+    validations:
+      required: true
+
+  - type: textarea
+    id: output_variables
+    attributes:
+      label: "📤 Required Output Variables"
+      description: "Essential outputs the module must provide"
+      placeholder: |
+        Example:
+        - vpc_id: ID of the created VPC
+        - private_subnet_ids: List of private subnet IDs
+        - public_subnet_ids: List of public subnet IDs
+        - security_group_id: Default security group ID
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: "🔗 Module Dependencies"
+      description: "Other modules or resources this module depends on"
+      placeholder: |
+        Example:
+        - Existing Route53 hosted zone
+        - Shared KMS key for encryption
+        - Corporate DNS resolver
+        - Existing IAM roles
+
+  - type: checkboxes
+    id: quality_gates
+    attributes:
+      label: "✅ Quality Gates"
+      description: "Quality checks that must pass before module release"
+      options:
+        - label: "Checkov security scan passes"
+        - label: "TFSec security scan passes"
+        - label: "Terrascan security scan passes"
+        - label: "TFLint validation passes"
+        - label: "terraform validate succeeds"
+        - label: "terraform plan runs without errors"
+        - label: "Module documentation auto-generated"
+        - label: "Example configurations provided"
+        - label: "Unit tests implemented"
+        - label: "Integration tests implemented"
+
+  - type: textarea
+    id: testing_requirements
+    attributes:
+      label: "🧪 Testing Requirements"
+      description: "Testing strategy and requirements"
+      placeholder: |
+        Example:
+        - Unit tests with terraform-test
+        - Integration tests with real resources
+        - Example configurations must deploy successfully
+        - Destroy operations must complete cleanly
+        - Performance testing for large deployments
+
+  - type: textarea
+    id: cost_considerations
+    attributes:
+      label: "💰 Cost Considerations"
+      description: "Cost optimization and budget requirements"
+      placeholder: |
+        Example:
+        - NAT Gateway costs for multi-AZ deployment
+        - Data transfer costs between subnets
+        - KMS key usage costs
+        - CloudWatch logs retention costs
+        - Estimated monthly cost range: $X - $Y
+
+  - type: textarea
+    id: operational_requirements
+    attributes:
+      label: "🔧 Operational Requirements"
+      description: "Operational and maintenance considerations"
+      placeholder: |
+        Example:
+        - Monitoring and alerting setup
+        - Backup and recovery procedures
+        - Update and patching strategy
+        - Documentation requirements
+        - Support and maintenance responsibilities
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "⚡ Priority Level"
+      description: "Business priority for this module development"
+      options:
+        - High - Critical business need
+        - Medium - Important enhancement
+        - Low - Nice to have
+    validations:
+      required: true
+
+  - type: input
+    id: target_completion
+    attributes:
+      label: "📅 Target Completion Date"
+      description: "When this module needs to be available"
+      placeholder: "YYYY-MM-DD"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "📄 Additional Context"
+      description: "Any additional information, constraints, or requirements"
+      placeholder: |
+        Example:
+        - Integration with existing systems
+        - Migration considerations
+        - Special architectural requirements
+        - Team or organizational constraints
+
+  - type: checkboxes
+    id: acceptance_criteria
+    attributes:
+      label: "✅ Acceptance Criteria"
+      description: "Criteria that must be met for this module to be considered complete"
+      options:
+        - label: "Module follows terraform-<PROVIDER>-<NAME> naming convention"
+        - label: "All security requirements implemented and verified"
+        - label: "Module passes all quality gates"
+        - label: "Documentation is complete and accurate"
+        - label: "Examples demonstrate common use cases"
+        - label: "Module is published to internal/public registry"
+        - label: "Team training completed if required"
