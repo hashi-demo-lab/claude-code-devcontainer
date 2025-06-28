@@ -80,7 +80,6 @@ rm -f /tmp/infracost.tar.gz
 echo "Installing pre-commit hooks..."
 #pip install --user -U pre-commit && pre-commit install-hooks
 
-
 echo "Installing Checkov v${CHECKOV_VERSION} in virtual environment..."
 # Install python3-venv if not already installed
 sudo apt-get update && sudo apt-get install -y python3-venv
