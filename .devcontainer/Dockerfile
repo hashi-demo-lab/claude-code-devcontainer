@@ -34,7 +34,8 @@ RUN apt update && apt install -y less \
   python3-pip \
   python3-venv \
   python3-full \
-  jq
+  jq \
+  curl
 
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
