@@ -84,9 +84,12 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 USER root
+# Install uv system-wide before terraform tools (needed by terraform-tools.sh)
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
 # Create wheel group if it doesn't exist and add node user to it
 RUN groupadd -f wheel && usermod -aG wheel node
 
@@ -109,5 +112,9 @@ RUN /tmp/library-scripts/terraform-tools.sh \
     "${TFLINT_GCP_RULESET_VERSION}" \
     "${INFRACOST_VERSION}" \
     "${CHECKOV_VERSION}"
+
+# Also install uv for the node user
+USER node
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 USER node
