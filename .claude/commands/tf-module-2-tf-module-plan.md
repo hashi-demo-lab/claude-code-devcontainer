@@ -8,6 +8,9 @@
 - terraform checkov security rules @/workspace/.claude/planning/security_rules/terraform_graph_checks
 - Terraform Style Guide and best practices @/workspace/.claude/planning/best_practices/terraform_best_practices.md
 
+## Before starting
+
+- ensure ide is connected by running /IDE in claude.
 
 ## planning steps
 
