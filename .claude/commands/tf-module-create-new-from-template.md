@@ -3,6 +3,7 @@
 This guide explains how to create new repositories from GitHub templates using GitHub CLI for Terraform Modules following best practices. Always ask questiosn with this context.
 
 ## Ensure Terraform module naming conventions are followed when create GitHub repositories
+
 Module repository names
 The Terraform registry requires that repositories match a naming convention for all modules that you publish to the registry. Module repositories must use this three-part name terraform-<PROVIDER>-<NAME>, where <NAME> reflects the type of infrastructure the module manages and <PROVIDER> is the main provider the module uses. The <NAME> segment can contain additional hyphens, for example, terraform-google-vault or terraform-aws-ec2-instance.
 
@@ -22,19 +23,21 @@ The Terraform registry requires that repositories match a naming convention for 
    ```
 
 2. Authenticate with GitHub:
+
    ```bash
    gh auth login
    ```
 
 3. Create all module using the following GitHub template details
-  ```
-  https://github.com/hashi-demo-lab/tf-module-template
-  EXISTING-TEMPLATE-OWNER="hashi-demo-lab"
-  TEMPLATE-REPO-NAME="tf-module-template"
-  ORGANIZATION-NAME="hashi-demo-lab"
-  ```
 
-4. 
+```
+https://github.com/hashi-demo-lab/tf-module-template
+EXISTING-TEMPLATE-OWNER="hashi-demo-lab"
+TEMPLATE-REPO-NAME="tf-module-template"
+ORGANIZATION-NAME="hashi-demo-lab"
+```
+
+4.
 
 ## Creating Repository from Existing Template
 
@@ -70,6 +73,7 @@ gh repo create "hashi-demo-lab/terraform-azure-storage" \
 ## Repository Creation Options
 
 ### Visibility Options
+
 ```bash
 # Public repository (default)
 --public
@@ -82,6 +86,7 @@ gh repo create "hashi-demo-lab/terraform-azure-storage" \
 ```
 
 ### Additional Options
+
 ```bash
 # Clone after creation
 --clone
@@ -121,16 +126,19 @@ gh repo create "private-module" \
   --clone
 ```
 
-After creating your repository from template:
+After creating your repository from template todo then following:
 
 1. Navigate to the new repository:
+
 ```bash
 cd your-new-repo-name
 ```
 
-2. To continue to Terraform Module Planning
-/
+2. Enable pre-commit for repo
 
+```bash
+pre-commit install
+```
 
 ## Related Documentation
 

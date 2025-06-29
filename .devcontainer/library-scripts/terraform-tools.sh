@@ -78,9 +78,8 @@ sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
 rm -f /tmp/infracost.tar.gz
 
 echo "Installing pre-commit hooks..."
-sudo python3 -m venv /opt/precommit-venv
-sudo /opt/precommit-venv/bin/pip install pre-commit
-echo 'export PATH="/opt/precommit-venv/bin:$PATH"' >> ~/.zshrc
+uv tool install pre-commit --with pre-commit-uv
+
 # Now install the hooks
 #pre-commit install-hooks - move to repo initialisation
 
