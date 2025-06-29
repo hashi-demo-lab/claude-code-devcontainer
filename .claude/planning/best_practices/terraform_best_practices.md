@@ -14,4 +14,4 @@
 
 ## Terraform security rules
 
-Located in the security_rules folder under /.cluade/planning/security_rules/
+Terraform security rules are located in the security_rules folder under /.cluade/planning/security_rules/
