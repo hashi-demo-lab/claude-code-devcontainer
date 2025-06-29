@@ -77,22 +77,23 @@ tar -xzf /tmp/infracost.tar.gz -C /tmp
 sudo mv /tmp/infracost-linux-amd64 /usr/local/bin/infracost
 rm -f /tmp/infracost.tar.gz
 
-echo "Installing pre-commit hooks..."
+echo "Installing pre-commit..."
+# Install pre-commit system-wide using uv
 uv tool install pre-commit --with pre-commit-uv
 
-# Now install the hooks
-#pre-commit install-hooks - move to repo initialisation
+# Create a symlink so it's available system-wide
+sudo ln -sf ~/.local/bin/pre-commit /usr/local/bin/pre-commit
+
+# Also make sure it's available to the node user by installing it for them too
+# First ensure the node user's .local directory exists
+sudo -u node mkdir -p /home/node/.local/bin
+
+# Install pre-commit for the node user (this will work after uv is installed for node user)
+# We'll do this in the Dockerfile after switching to node user
 
 echo "Installing Checkov v${CHECKOV_VERSION} in virtual environment..."
 # Install python3-venv if not already installed
 sudo apt-get update && sudo apt-get install -y python3-venv
-
-VENV_DIR="/opt/precommit-venv"
-sudo python3 -m venv ${VENV_DIR}
-sudo ${VENV_DIR}/bin/pip install -U pre-commit
-
-# Add to PATH instead of sourcing (cleaner for system-wide install)
-echo 'export PATH="/opt/precommit-venv/bin:$PATH"' >> ~/.zshrc
 
 # Create a virtual environment for Checkov
 VENV_DIR="/opt/checkov-venv"

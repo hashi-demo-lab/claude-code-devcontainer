@@ -113,9 +113,12 @@ RUN /tmp/library-scripts/terraform-tools.sh \
     "${INFRACOST_VERSION}" \
     "${CHECKOV_VERSION}"
 
-# Also install uv for the node user
+# Switch back to node user and install uv for them too
 USER node
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-RUN uv tool install pre-commit --with pre-commit-uv
 
-USER node
+# Add uv tools to node user's PATH
+RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+
+# Install pre-commit for the node user so they can use it
+RUN ~/.local/bin/uv tool install pre-commit --with pre-commit-uv
