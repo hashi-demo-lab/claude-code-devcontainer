@@ -247,7 +247,18 @@ fi
 echo "✅ Terraform module setup completed successfully!"
 ```
 
-### Step 6: Final Confirmation
+### step 6: update CLAUDE.md to reflect what been completed
+
+Include the following details when updating CLAUDE.md
+
+- terraform module name
+- Repository URL "https://github.com/${ORG_NAME}/${REPO_NAME}"
+- Local directory path $(pwd)
+- Any warnings or optional tools that weren't available
+- Next development steps
+
+
+### Step 7: Final Confirmation
 
 ```bash
 # Display success summary
