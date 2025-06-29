@@ -5,5 +5,10 @@
     "awslabs.terraform-mcp-server",
     "context7",
     "sequential-thinking"
-  ]
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)"
+    ]
+  }
 }

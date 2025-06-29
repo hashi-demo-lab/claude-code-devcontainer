@@ -126,18 +126,34 @@ gh repo create "private-module" \
   --clone
 ```
 
-After creating your repository from template todo then following:
+Complets steps to do in order of execution:
 
-1. Navigate to the new repository:
+1. create github repository from template
+
+```bash
+gh repo create "NEW-REPO-NAME" \
+  --template "EXISTING-TEMPLATE-OWNER/TEMPLATE-REPO-NAME" \
+  --description "New repository description" \
+  --public \
+  --clone
+```
+
+2. Navigate to the new repository:
 
 ```bash
 cd your-new-repo-name
 ```
 
-2. Enable pre-commit for repo
+3. Enable pre-commit for repo
 
 ```bash
 pre-commit install
+```
+
+4. Enable pre-commit for repo
+
+```bash
+tflint --init
 ```
 
 ## Related Documentation
