@@ -141,6 +141,7 @@ gh repo create "private-module" \
 ### Step 1: Validate Prerequisites and Gather Information
 
 **First, validate GitHub CLI is available:**
+
 ```bash
 # Check if GitHub CLI is installed and authenticated
 if ! command -v gh &> /dev/null; then
@@ -156,6 +157,7 @@ fi
 ```
 
 **Then gather module information:**
+
 - Ask user for module name (validate against terraform-<provider>-<name> pattern)
 - Confirm provider and infrastructure type
 - Generate appropriate description
@@ -255,18 +257,17 @@ echo "==========================================="
 echo "Repository: https://github.com/${ORG_NAME}/${REPO_NAME}"
 echo "Local path: $(pwd)"
 echo "Next steps:"
-echo "1. Customize variables.tf for your module inputs"
-echo "2. Implement resources in main.tf"
-echo "3. Define outputs in outputs.tf"
-echo "4. Update README.md with module documentation"
-echo "5. Run 'terraform-docs markdown table . > README.md' to auto-generate docs"
+echo run /tf-module-planning
+"
 ```
 
 **Claude should report:**
+
 - Repository URL
 - Local directory path
 - Any warnings or optional tools that weren't available
 - Next development steps
+- For module design and planning via a GitHub issue run /tf-module-planning. This will start the planning process via GitHub Issues
 
 ## Related Documentation
 
