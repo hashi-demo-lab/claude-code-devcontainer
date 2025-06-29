@@ -255,6 +255,7 @@ echo "==========================================="
 echo "✅ MODULE CREATION COMPLETED SUCCESSFULLY"
 echo "==========================================="
 echo "Repository: https://github.com/${ORG_NAME}/${REPO_NAME}"
+echo ""
 echo "Local path: $(pwd)"
 echo "Next steps:"
 echo run /tf-module-planning
