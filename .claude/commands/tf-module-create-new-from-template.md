@@ -46,7 +46,7 @@ TEMPLATE_URL="https://github.com/hashi-demo-lab/tf-module-template"
 ## Creating Repository from Existing Template
 
 Use the `gh repo create` command with the `--template` flag to create from an existing template repository:
-when cloning don't specify any directory path this will be inherited by default
+**Important**: The repository will be cloned into a directory matching the repo name
 
 ```bash
 # Basic command structure - creates from existing template
@@ -136,75 +136,140 @@ gh repo create "private-module" \
 
 ## Claude Code Execution Steps
 
-Execute these steps in order with proper error handling:
+**CRITICAL**: Execute these steps in exact order. Stop execution if any step fails and report the error to the user.
 
-### Step 1: Gather Module Information
+### Step 1: Validate Prerequisites and Gather Information
 
+**First, validate GitHub CLI is available:**
+```bash
+# Check if GitHub CLI is installed and authenticated
+if ! command -v gh &> /dev/null; then
+    echo "ERROR: GitHub CLI not found. Please install it first."
+    exit 1
+fi
+
+# Verify authentication
+if ! gh auth status &> /dev/null; then
+    echo "ERROR: GitHub CLI not authenticated. Run 'gh auth login' first."
+    exit 1
+fi
+```
+
+**Then gather module information:**
 - Ask user for module name (validate against terraform-<provider>-<name> pattern)
 - Confirm provider and infrastructure type
 - Generate appropriate description
+- Verify template repository exists before proceeding
 
 ### Step 2: Create Repository
 
 ```bash
-# Create repository from template (without cloning)
-gh repo create "hashi-demo-lab/terraform-<provider>-<name>" \
-  --template "hashi-demo-lab/tf-module-template" \
-  --description "Terraform <provider> <name> module" \
+# Set variables for reliability
+REPO_NAME="terraform-<provider>-<name>"
+ORG_NAME="hashi-demo-lab"
+TEMPLATE_REPO="hashi-demo-lab/tf-module-template"
+DESCRIPTION="Terraform <provider> <name> module"
+
+# Create repository from template (without cloning initially)
+echo "Creating repository ${ORG_NAME}/${REPO_NAME}..."
+gh repo create "${ORG_NAME}/${REPO_NAME}" \
+  --template "${TEMPLATE_REPO}" \
+  --description "${DESCRIPTION}" \
   --public
 
+# Verify repository was created successfully
+if ! gh repo view "${ORG_NAME}/${REPO_NAME}" &> /dev/null; then
+    echo "ERROR: Repository creation failed or repository not accessible"
+    exit 1
+fi
+
 # Clone the repository to current directory
-gh repo clone "hashi-demo-lab/terraform-<provider>-<name>"
+echo "Cloning repository..."
+gh repo clone "${ORG_NAME}/${REPO_NAME}"
 ```
 
 ### Step 3: Navigate to Module Directory
 
 ```bash
-# Verify directory exists and navigate
+# Navigate to the cloned repository directory
+cd "${REPO_NAME}"
+
+# Verify we're in the correct directory
+if [[ ! -f "main.tf" && ! -f "variables.tf" ]]; then
+    echo "ERROR: Not in a Terraform module directory. Expected main.tf or variables.tf files."
+    exit 1
+fi
+
+# Confirm location
+echo "Successfully navigated to: $(pwd)"
 ls -la
-cd terraform-<provider>-<name>
-pwd  # Confirm we're in the right directory
 ```
 
 ### Step 4: Initialize Development Tools
 
 ```bash
-# Check if directory structure is correct
-ls -la
-
 # Initialize TFLint (always available in devcontainer)
-tflint --init
+echo "Initializing TFLint..."
+if ! tflint --init; then
+    echo "WARNING: TFLint initialization failed, but continuing..."
+fi
 
 # Enable pre-commit hooks if available (optional step)
 if command -v pre-commit &> /dev/null; then
+    echo "Installing pre-commit hooks..."
     pre-commit install
 else
     echo "Pre-commit not available - skipping (this is optional)"
 fi
+
+# Verify directory structure
+echo "Module directory structure:"
+ls -la
 ```
 
 ### Step 5: Verify Setup
 
 ```bash
-# Ensure we're in the module directory
-pwd
-ls -la
-
 # Validate Terraform configuration
-terraform init
-terraform validate
+echo "Initializing and validating Terraform..."
+if ! terraform init; then
+    echo "ERROR: Terraform initialization failed"
+    exit 1
+fi
 
+if ! terraform validate; then
+    echo "ERROR: Terraform validation failed"
+    exit 1
+fi
 
-### Step 6: Confirmation and Next Steps
+echo "✅ Terraform module setup completed successfully!"
+```
 
-- Confirm all steps completed successfully
-- Provide repository URL and local path
-- List any optional tools that weren't initialized
-- Suggest next development steps
+### Step 6: Final Confirmation
+
+```bash
+# Display success summary
+echo "==========================================="
+echo "✅ MODULE CREATION COMPLETED SUCCESSFULLY"
+echo "==========================================="
+echo "Repository: https://github.com/${ORG_NAME}/${REPO_NAME}"
+echo "Local path: $(pwd)"
+echo "Next steps:"
+echo "1. Customize variables.tf for your module inputs"
+echo "2. Implement resources in main.tf"
+echo "3. Define outputs in outputs.tf"
+echo "4. Update README.md with module documentation"
+echo "5. Run 'terraform-docs markdown table . > README.md' to auto-generate docs"
+```
+
+**Claude should report:**
+- Repository URL
+- Local directory path
+- Any warnings or optional tools that weren't available
+- Next development steps
 
 ## Related Documentation
 
 - [GitHub Templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository)
 - [GitHub CLI documentation](https://cli.github.com/manual/)
 - [Repository Creation](https://docs.github.com/en/repositories/creating-and-managing-repositories)
-```
