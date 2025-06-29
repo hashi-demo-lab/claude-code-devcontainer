@@ -116,5 +116,6 @@ RUN /tmp/library-scripts/terraform-tools.sh \
 # Also install uv for the node user
 USER node
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+uv tool install pre-commit --with pre-commit-uv
 
 USER node

@@ -1,11 +1,17 @@
-# How to Create a GitHub Repository from Template
+# Terraform Module Repository Creation from Template
 
-This guide explains how to create new repositories from GitHub templates using GitHub CLI for Terraform Modules following best practices. Always ask questiosn with this context.
+This command guide enables Claude Code to create new Terraform module repositories from templates using GitHub CLI, following HashiCorp naming conventions and best practices.
 
-## Ensure Terraform module naming conventions are followed when create GitHub repositories
+## Required Terraform Module Naming Convention
 
-Module repository names
-The Terraform registry requires that repositories match a naming convention for all modules that you publish to the registry. Module repositories must use this three-part name terraform-<PROVIDER>-<NAME>, where <NAME> reflects the type of infrastructure the module manages and <PROVIDER> is the main provider the module uses. The <NAME> segment can contain additional hyphens, for example, terraform-google-vault or terraform-aws-ec2-instance.
+**CRITICAL**: All Terraform registry modules must follow this exact naming pattern:
+`terraform-<PROVIDER>-<NAME>`
+
+- `<PROVIDER>`: Main cloud provider (aws, azure, google, etc.)
+- `<NAME>`: Infrastructure type the module manages (can contain hyphens)
+- Examples: `terraform-aws-vpc`, `terraform-google-vault`, `terraform-aws-ec2-instance`
+
+Claude should ALWAYS validate module names against this pattern before creation.
 
 ## Prerequisites
 
@@ -28,28 +34,30 @@ The Terraform registry requires that repositories match a naming convention for 
    gh auth login
    ```
 
-3. Create all module using the following GitHub template details
+3. **Required Template Configuration:**
 
+```bash
+TEMPLATE_OWNER="hashi-demo-lab"
+TEMPLATE_REPO="tf-module-template"
+ORGANIZATION="hashi-demo-lab"
+TEMPLATE_URL="https://github.com/hashi-demo-lab/tf-module-template"
 ```
-https://github.com/hashi-demo-lab/tf-module-template
-EXISTING-TEMPLATE-OWNER="hashi-demo-lab"
-TEMPLATE-REPO-NAME="tf-module-template"
-ORGANIZATION-NAME="hashi-demo-lab"
-```
-
-4.
 
 ## Creating Repository from Existing Template
 
 Use the `gh repo create` command with the `--template` flag to create from an existing template repository:
+when cloning don't specify any directory path this will be inherited by default
 
 ```bash
 # Basic command structure - creates from existing template
+# Note: Create repository first, then clone separately to avoid branch reference issues
 gh repo create "NEW-REPO-NAME" \
   --template "EXISTING-TEMPLATE-OWNER/TEMPLATE-REPO-NAME" \
   --description "New repository description" \
-  --public \
-  --clone
+  --public
+
+# Then clone the repository separately
+gh repo clone "ORGANIZATION-NAME/NEW-REPO-NAME"
 ```
 
 ### Examples with Existing Templates
@@ -108,7 +116,7 @@ gh repo create "hashi-demo-lab/terraform-azure-storage" \
 
 ```bash
 # Minimal command
-gh repo create "my-new-repo" --template "owner/template-repo"
+gh repo create "my-new-repo" --template "owner/template-repo" --public --clone
 
 
 # Full command with all options
@@ -126,38 +134,77 @@ gh repo create "private-module" \
   --clone
 ```
 
-Complets steps to do in order of execution:
+## Claude Code Execution Steps
 
-1. create github repository from template
+Execute these steps in order with proper error handling:
+
+### Step 1: Gather Module Information
+
+- Ask user for module name (validate against terraform-<provider>-<name> pattern)
+- Confirm provider and infrastructure type
+- Generate appropriate description
+
+### Step 2: Create Repository
 
 ```bash
-gh repo create "NEW-REPO-NAME" \
-  --template "EXISTING-TEMPLATE-OWNER/TEMPLATE-REPO-NAME" \
-  --description "New repository description" \
-  --public \
-  --clone
+# Create repository from template (without cloning)
+gh repo create "hashi-demo-lab/terraform-<provider>-<name>" \
+  --template "hashi-demo-lab/tf-module-template" \
+  --description "Terraform <provider> <name> module" \
+  --public
+
+# Clone the repository to current directory
+gh repo clone "hashi-demo-lab/terraform-<provider>-<name>"
 ```
 
-2. Navigate to the new repository:
+### Step 3: Navigate to Module Directory
 
 ```bash
-cd your-new-repo-name
+# Verify directory exists and navigate
+ls -la
+cd terraform-<provider>-<name>
+pwd  # Confirm we're in the right directory
 ```
 
-3. Enable pre-commit for repo
+### Step 4: Initialize Development Tools
 
 ```bash
-pre-commit install
-```
+# Check if directory structure is correct
+ls -la
 
-4. Enable pre-commit for repo
-
-```bash
+# Initialize TFLint (always available in devcontainer)
 tflint --init
+
+# Enable pre-commit hooks if available (optional step)
+if command -v pre-commit &> /dev/null; then
+    pre-commit install
+else
+    echo "Pre-commit not available - skipping (this is optional)"
+fi
 ```
+
+### Step 5: Verify Setup
+
+```bash
+# Ensure we're in the module directory
+pwd
+ls -la
+
+# Validate Terraform configuration
+terraform init
+terraform validate
+
+
+### Step 6: Confirmation and Next Steps
+
+- Confirm all steps completed successfully
+- Provide repository URL and local path
+- List any optional tools that weren't initialized
+- Suggest next development steps
 
 ## Related Documentation
 
 - [GitHub Templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository)
 - [GitHub CLI documentation](https://cli.github.com/manual/)
 - [Repository Creation](https://docs.github.com/en/repositories/creating-and-managing-repositories)
+```
