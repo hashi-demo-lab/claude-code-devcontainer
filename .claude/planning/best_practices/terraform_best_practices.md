@@ -11,7 +11,3 @@
 ## AZURE Terraform Provider Best Practices
 
 - https://azure.github.io/Azure-Verified-Modules/tags/language-terraform/
-
-## Terraform security rules
-
-Terraform security rules are located in the security_rules folder under /.cluade/planning/security_rules/
