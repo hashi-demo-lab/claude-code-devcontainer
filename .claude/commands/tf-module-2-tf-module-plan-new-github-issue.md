@@ -1,6 +1,6 @@
 # Terraform module design planning
 
-## add to memory
+## add to claudes memory
 
 - planning_workflow @/workspace/.claude/templates/workflow-planning.mmd
 - github_issues_module_template "📋 Terraform Module Requirements"
@@ -15,7 +15,7 @@
 - GitHub rules "when working in GitHub always work under a feature branch, never commit directly to main"
 - GitHub issues "For planning GitHub issues should always be labelled documentation"
 - Module patterns "When looking at module for AWS they are published by aws-ia use 'SearchSpecificAwsIaModules', for Azure modules are published by Azure, IBM modules are published by terraform-ibm-modules"
-- Mermaid diagram "use the architecture-beta format for all mermaid diagrams, apply neo theme and a hierarchial layout"
+- Mermaid diagrams "For all mermaid diagrams, apply neo theme and a hierarchial layout"
 - Plannig outputs "create all module design planning outputs in the design and planning subfolder of the module, terraform-<provider name>-<provider resource>/design and planning, architecture-design.md, architecture-design.mmd, requirements-analysis.md"
 
 ## Role Assignments & Collaboration Model
