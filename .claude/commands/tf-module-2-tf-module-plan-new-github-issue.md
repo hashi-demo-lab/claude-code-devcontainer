@@ -10,6 +10,7 @@
 - Module structure "The module structure, file and directory layout is already preexisting in the module repository it should have been cloned into a subfolder, but check to confirm, and set the working directory to the module"
 - design outputs "All planning an design outputs should be writtern to a subfolder of the module called "design and planning".
 - Module status "The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
+- GitHub issues "For planning GitHub issues should always be labelled documentation"
 
 ## Role Assignments & Collaboration Model
 
@@ -50,7 +51,7 @@ Steps should be performed in the following order:
 
    - AI uses GitHub CLI (`gh issue create`) to create the issue in the repository
    - Use populated template as the issue body
-   - Apply appropriate labels (e.g., "terraform", "module", "planning")
+   - Apply appropriate labels (e.g., "documentation")
    - Assign to appropriate milestone if exists
 
    c. **Verification** 👥 (Human-AI Pair)
