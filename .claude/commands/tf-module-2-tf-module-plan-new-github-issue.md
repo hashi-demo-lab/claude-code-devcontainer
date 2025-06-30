@@ -13,7 +13,7 @@
 This workflow follows a structured human-AI collaboration model:
 
 - 👤 **Human Only**: Tasks requiring human judgment, business context, or final approval
-- 🤖 **AI Only**: Research, analysis, and documentation tasks that benefit from AI capabilities  
+- 🤖 **AI Only**: Research, analysis, and documentation tasks that benefit from AI capabilities
 - 👥 **Human-AI Pair**: Collaborative tasks combining human insight with AI assistance
 - ❓ **Decision Points**: Critical approval gates requiring human decision-making
 
@@ -29,21 +29,40 @@ The intenton of this prompt is for planning and design only we are not writing a
 Steps should be performed in the following order:
 
 1. **Understand Planning Workflow** 👥 (Human-AI Pair)
+
    - Review the planning_workflow from the mermaid diagram workflow-planning.mmd @/workspace/.claude/templates/workflow-planning.mmd
    - Confirm understanding of the complete workflow phases and role assignments
 
 2. **Create GitHub Issue** 👥 (Human-AI Pair)
-   - Prompt the user to create a Github issue from existing template "📋 Terraform Module Requirements"
-   - Populate known inputs (providers, basic requirements, etc.)
-   - Ensure issue captures initial scope and objectives
+
+   **Sub-steps:**
+   
+   a. **Template Population** 🤖 (AI-Only)
+      - AI creates populated GitHub issue template "📋 Terraform Module Requirements"
+      - Include provider requirements, basic functionality, security needs
+      - Add initial scope and objectives based on user input
+   
+   b. **Issue Creation** 🤖 (AI-Only)
+      - AI uses GitHub CLI (`gh issue create`) to create the issue in the repository
+      - Use populated template as the issue body
+      - Apply appropriate labels (e.g., "terraform", "module", "planning")
+      - Assign to appropriate milestone if exists
+   
+   c. **Verification** 👥 (Human-AI Pair)
+      - Verify issue creation was successful
+      - Confirm issue URL is accessible
+      - Update issue with any additional context from user
+      - Proceed only after successful issue creation
 
 3. **AI-Assisted Planning Phase** 👥 (Human-AI Pair)
+
    - **Requirements Analysis** 👥 (Technical & Security Requirements)
+
      - Analyze functional and non-functional requirements
      - Review security requirements using tfsec rules and terraform checkov security rules
      - Reference Terraform Style Guide and best practices
      - Document compliance and governance requirements
-   
+
    - **Resource Research** 🤖 (AI-Only Task)
      - Use MCP servers to research AWS provider documentation
      - Search for existing AWS-IA modules that could be leveraged
@@ -52,6 +71,7 @@ Steps should be performed in the following order:
      - Document findings and recommendations
 
 4. **Architecture Design Creation** 👥 (Human-AI Pair)
+
    - Create comprehensive architecture design with AI assistance
    - Generate architecture diagrams and documentation
    - Define module structure, inputs, outputs, and dependencies
@@ -59,21 +79,25 @@ Steps should be performed in the following order:
    - Create cost estimation framework
 
 5. **Design PR Creation** 👥 (Human-AI Pair)
+
    - Create pull request with architecture documentation
    - Include all design artifacts and diagrams
    - Add architectural decision records (ADRs) if applicable
    - Ensure documentation follows project standards
 
-6. **Review & Approval Cycle** 
+6. **Review & Approval Cycle**
+
    - **Architecture Review** 👤 (Human-Only Task)
+
      - Technical review of proposed architecture
      - Security and compliance validation
      - Cost and operational impact assessment
-   
+
    - **Decision Point** ❓ (Approval Gateway)
+
      - ✅ **If Approved**: Proceed to development phase
      - ❌ **If Changes Requested**: Return to step 4 for design updates
-   
+
    - **Design Updates** 👥 (Human-AI Pair - if needed)
      - Address review feedback
      - Update architecture documentation
