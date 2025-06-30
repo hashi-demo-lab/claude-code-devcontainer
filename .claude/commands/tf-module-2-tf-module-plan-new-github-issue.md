@@ -24,7 +24,7 @@ This workflow follows a structured human-AI collaboration model:
 
 ## Before starting
 
-- ensure ide is connected by running /IDE in claude.
+- ensure ide is connected by running /ide in claude.
 
 ## planning steps
 
@@ -38,7 +38,13 @@ Steps should be performed in the following order:
    - Review the planning_workflow from the mermaid diagram workflow-planning.mmd @/workspace/.claude/templates/workflow-planning.mmd
    - Confirm understanding of the complete workflow phases and role assignments
 
-2. **Create GitHub Issue** 👥 (Human-AI Pair)
+2. **Assess the module repository**
+
+   - The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
+   - ultrathink about potential designs patterns and considerations.
+   - get the latest provider versions for the targeted resource
+
+3. **Create GitHub Issue** 👥 (Human-AI Pair)
 
    **Sub-steps:**
 
@@ -62,7 +68,7 @@ Steps should be performed in the following order:
    - Update issue with any additional context from user
    - Proceed only after successful issue creation
 
-3. **AI-Assisted Planning Phase** 👥 (Human-AI Pair)
+4. **AI-Assisted Planning Phase** 👥 (Human-AI Pair)
 
    - **Requirements Analysis** 👥 (Technical & Security Requirements)
 
@@ -78,7 +84,7 @@ Steps should be performed in the following order:
      - Identify security scanning requirements and tools
      - Document findings and recommendations
 
-4. **Architecture Design Creation** 👥 (Human-AI Pair)
+5. **Architecture Design Creation** 👥 (Human-AI Pair)
 
    - Create comprehensive architecture design with AI assistance
    - Generate architecture diagrams and documentation
@@ -86,14 +92,14 @@ Steps should be performed in the following order:
    - Document security controls and compliance measures
    - Create cost estimation framework
 
-5. **Design PR Creation** 👥 (Human-AI Pair)
+6. **Design PR Creation** 👥 (Human-AI Pair)
 
    - Create pull request with architecture documentation
    - Include all design artifacts and diagrams
    - Add architectural decision records (ADRs) if applicable
    - Ensure documentation follows project standards
 
-6. **Review & Approval Cycle**
+7. **Review & Approval Cycle**
 
    - **Architecture Review** 👤 (Human-Only Task)
 
@@ -111,7 +117,7 @@ Steps should be performed in the following order:
      - Update architecture documentation
      - Push updates and request re-review
 
-7. **Planning Phase Completion** 🎯
+8. **Planning Phase Completion** 🎯
    - Confirm all planning artifacts are complete and approved
    - Transition planning issue to "Ready for Development" status
    - Create development phase GitHub issue or milestone
