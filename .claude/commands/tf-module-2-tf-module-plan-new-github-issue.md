@@ -12,7 +12,7 @@
 - Module status "The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
 - Terraform mcp "For Terraform when choosing MCP servers using the terraform hashicorp/terraform-mcp-server "prioritize tool lookups using the for getting provider documentation vs using awslabs."
 - GitHub issues "For planning GitHub issues should always be labelled documentation"
-- Module patterns "When looking at module for AWS they are published by aws-ia, for Azure modules are published by Azure, IBM modules are published by terraform-ibm-modules"
+- Module patterns "When looking at module for AWS they are published by aws-ia use 'SearchSpecificAwsIaModules', for Azure modules are published by Azure, IBM modules are published by terraform-ibm-modules"
 
 ## Role Assignments & Collaboration Model
 
