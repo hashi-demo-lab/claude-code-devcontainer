@@ -18,4 +18,4 @@ This task is focused on planning and design for a Terraform modules.
 Steps should be performed in the following order:
 
 1. Understand the planning_workflow from the mermaid diagram workflow-planning.mmd
-2. Prompt the user to create a Github issue from existing template or to lookup existing GitHub Issues if already existing "📋 Terraform Module Requirements and with create or lookup if existing.
+2. Prompt the user to provide existing Github issue for Lookup
