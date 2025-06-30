@@ -9,6 +9,7 @@
 - Terraform style guide and best practices @/workspace/.claude/planning/best_practices/terraform_best_practices.md
 - Module structure "The module structure, file and directory layout is already preexisting in the module repository it should have been cloned into a subfolder, but check to confirm, and set the working directory to the module"
 - design outputs "All planning an design outputs should be writtern to a subfolder of the module called "design and planning".
+- Module status "The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
 
 ## Role Assignments & Collaboration Model
 
