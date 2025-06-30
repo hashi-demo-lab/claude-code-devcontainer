@@ -115,13 +115,19 @@ example:
    - Document security controls and compliance measures
    - Create cost estimation framework
 
-7. **Design PR Creation** 👥 (Human-AI Pair)
+7. **Create GitHub PR for all planniong and design artifacts** 👥 (Human-AI Pair)
    - Create pull request with architecture documentation
    - Include all design artifacts and diagrams
    - Add architectural decision records (ADRs) if applicable
    - Ensure documentation follows project standards
 
-8. **Review & Approval Cycle**
+8. **Planning Phase Completion** 🎯
+   - Confirm all planning artifacts are complete and approved
+   - Transition planning issue to "Ready for Development" status
+   - Create development phase GitHub issue or milestone
+   - Document lessons learned and process improvements
+
+9. **Review & Approval Cycle**
 
    - **Architecture Review** 👤 (Human-Only Task)
 
@@ -139,8 +145,3 @@ example:
      - Update architecture documentation
      - Push updates and request re-review
 
-9. **Planning Phase Completion** 🎯
-   - Confirm all planning artifacts are complete and approved
-   - Transition planning issue to "Ready for Development" status
-   - Create development phase GitHub issue or milestone
-   - Document lessons learned and process improvements
