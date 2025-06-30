@@ -12,6 +12,7 @@
 - Module status "The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
 - Terraform mcp "For Terraform when choosing MCP servers using the terraform hashicorp/terraform-mcp-server "prioritize tool lookups using the for getting provider documentation vs using awslabs."
 - GitHub issues "For planning GitHub issues should always be labelled documentation"
+- Module patterns "When looking at module for AWS they are published by aws-ia, for Azure modules are published by Azure, IBM modules are published by terraform-ibm-modules"
 
 ## Role Assignments & Collaboration Model
 
@@ -25,6 +26,7 @@ This workflow follows a structured human-AI collaboration model:
 ## Before starting
 
 - ensure ide is connected by running /ide in claude.
+- ensure that the current working directory is /workspace, this wokrfllow is intended to be run from a standardized devcontainer and this should start at /workspace.
 
 ## planning steps
 
@@ -42,7 +44,7 @@ Steps should be performed in the following order:
 
    - The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
    - ultrathink about potential designs patterns and considerations.
-   - get the latest provider versions for the targeted resource
+   - get the latest provider versions for the targeted provider via MCP
 
 3. **Create GitHub Issue** 👥 (Human-AI Pair)
 
@@ -76,6 +78,7 @@ Steps should be performed in the following order:
      - Review security requirements using tfsec rules and terraform checkov security rules
      - Reference Terraform Style Guide and best practices
      - Document compliance and governance requirements
+     - Understand existing modules patterns from the public module registry. Use MCP to get module patterns.
 
    - **Resource Research** 🤖 (AI-Only Task)
      - Use MCP servers to research AWS provider documentation
