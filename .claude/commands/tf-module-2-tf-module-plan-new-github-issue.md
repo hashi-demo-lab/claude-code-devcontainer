@@ -14,6 +14,8 @@
 - GitHub rules "when working in GitHub always work under a feature branch, never commit directly to main"
 - GitHub issues "For planning GitHub issues should always be labelled documentation"
 - Module patterns "When looking at module for AWS they are published by aws-ia use 'SearchSpecificAwsIaModules', for Azure modules are published by Azure, IBM modules are published by terraform-ibm-modules"
+- Mermaid diagram "use the architecture-beta format for all mermaid diagrams"
+
 
 ## Role Assignments & Collaboration Model
 
@@ -47,7 +49,15 @@ Steps should be performed in the following order:
    - ultrathink about potential designs patterns and considerations.
    - get the latest provider versions for the targeted provider via MCP
 
-3. **Create GitHub Issue** 👥 (Human-AI Pair)
+3. **Read the GitHub issue template**
+example:
+
+```bash
+   gh issue view-template .github/ISSUE_TEMPLATE/terraform-module-requirements.yml
+```
+
+
+4. **Create GitHub Issue** 👥 (Human-AI Pair)
 
    **Sub-steps:**
 
@@ -59,7 +69,16 @@ Steps should be performed in the following order:
 
    b. **Issue Creation** 🤖 (AI-Only)
 
-   - AI uses GitHub CLI (`gh issue create`) to create the issue in the repository
+   - AI uses GitHub CLI (`gh issue create`) to create the issue in the repository. example below:
+
+   ```bash
+         gh issue create \
+      --template ".github/ISSUE_TEMPLATE/terraform-module-requirements.yml" \
+      --title "<module description>" \
+      --assignee username \
+      --label "documentation"
+   ```
+
    - Use populated template as the issue body
    - Apply appropriate labels (e.g., "documentation")
    - Assign to appropriate milestone if exists
@@ -71,7 +90,7 @@ Steps should be performed in the following order:
    - Update issue with any additional context from user
    - Proceed only after successful issue creation
 
-4. **AI-Assisted Planning Phase** 👥 (Human-AI Pair)
+5. **AI-Assisted Planning Phase** 👥 (Human-AI Pair)
 
    - **Requirements Analysis** 👥 (Technical & Security Requirements)
 
@@ -88,21 +107,21 @@ Steps should be performed in the following order:
      - Identify security scanning requirements and tools
      - Document findings and recommendations
 
-5. **Architecture Design Creation** 👥 (Human-AI Pair)
+6. **Architecture Design Creation** 👥 (Human-AI Pair)
 
    - Create comprehensive architecture design with AI assistance
-   - Generate architecture diagrams and documentation
+   - Generate architecture diagrams and documentation using Mermaid 
    - Define module structure, inputs, outputs, and dependencies
    - Document security controls and compliance measures
    - Create cost estimation framework
 
-6. **Design PR Creation** 👥 (Human-AI Pair)
+7. **Design PR Creation** 👥 (Human-AI Pair)
    - Create pull request with architecture documentation
    - Include all design artifacts and diagrams
    - Add architectural decision records (ADRs) if applicable
    - Ensure documentation follows project standards
 
-7. **Review & Approval Cycle**
+8. **Review & Approval Cycle**
 
    - **Architecture Review** 👤 (Human-Only Task)
 
@@ -120,7 +139,7 @@ Steps should be performed in the following order:
      - Update architecture documentation
      - Push updates and request re-review
 
-8. **Planning Phase Completion** 🎯
+9. **Planning Phase Completion** 🎯
    - Confirm all planning artifacts are complete and approved
    - Transition planning issue to "Ready for Development" status
    - Create development phase GitHub issue or milestone
