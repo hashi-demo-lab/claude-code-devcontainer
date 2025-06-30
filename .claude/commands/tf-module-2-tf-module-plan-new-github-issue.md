@@ -6,7 +6,7 @@
 - github_issues_module_template "📋 Terraform Module Requirements"
 - tfsec rules @/workspace/.claude/planning/security_rules/tfsec_rules.md
 - terraform checkov security rules @/workspace/.claude/planning/security_rules/terraform_graph_checks
-- Terraform Style Guide and best practices @/workspace/.claude/planning/best_practices/terraform_best_practices.md
+- Terraform style guide and best practices @/workspace/.claude/planning/best_practices/terraform_best_practices.md
 - Module structure "The module structure, file and directory layout is already preexisting in the module repository it should have been cloned into a subfolder, but check to confirm, and set the working directory to the module"
 - design outputs "All planning an design outputs should be writtern to a subfolder of the module called "design and planning".
 
