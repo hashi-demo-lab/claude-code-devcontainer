@@ -10,6 +10,7 @@
 - Module structure "The module structure, file and directory layout is already preexisting in the module repository it should have been cloned into a subfolder, but check to confirm, and set the working directory to the module"
 - design outputs "All planning an design outputs should be writtern to a subfolder of the module called "design and planning".
 - Module status "The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
+- Terraform mcp "For Terraform when choosing MCP servers using the terraform hashicorp/terraform-mcp-server "prioritize tool lookups using the for getting provider documentation vs using awslabs."
 - GitHub issues "For planning GitHub issues should always be labelled documentation"
 
 ## Role Assignments & Collaboration Model
