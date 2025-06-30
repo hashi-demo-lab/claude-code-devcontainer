@@ -7,6 +7,8 @@
 - tfsec rules @/workspace/.claude/planning/security_rules/tfsec_rules.md
 - terraform checkov security rules @/workspace/.claude/planning/security_rules/terraform_graph_checks
 - Terraform Style Guide and best practices @/workspace/.claude/planning/best_practices/terraform_best_practices.md
+- Module structure "The module structure, file and directory layout is already preexisting in the module repository it should have been cloned into a subfolder, but check to confirm, and set the working directory to the module"
+- design outputs "All planning an design outputs should be writtern to a subfolder of the module called "design and planning".
 
 ## Role Assignments & Collaboration Model
 
@@ -36,23 +38,26 @@ Steps should be performed in the following order:
 2. **Create GitHub Issue** 👥 (Human-AI Pair)
 
    **Sub-steps:**
-   
+
    a. **Template Population** 🤖 (AI-Only)
-      - AI creates populated GitHub issue template "📋 Terraform Module Requirements"
-      - Include provider requirements, basic functionality, security needs
-      - Add initial scope and objectives based on user input
-   
+
+   - AI creates populated GitHub issue template "📋 Terraform Module Requirements"
+   - Include provider requirements, basic functionality, security needs
+   - Add initial scope and objectives based on user input
+
    b. **Issue Creation** 🤖 (AI-Only)
-      - AI uses GitHub CLI (`gh issue create`) to create the issue in the repository
-      - Use populated template as the issue body
-      - Apply appropriate labels (e.g., "terraform", "module", "planning")
-      - Assign to appropriate milestone if exists
-   
+
+   - AI uses GitHub CLI (`gh issue create`) to create the issue in the repository
+   - Use populated template as the issue body
+   - Apply appropriate labels (e.g., "terraform", "module", "planning")
+   - Assign to appropriate milestone if exists
+
    c. **Verification** 👥 (Human-AI Pair)
-      - Verify issue creation was successful
-      - Confirm issue URL is accessible
-      - Update issue with any additional context from user
-      - Proceed only after successful issue creation
+
+   - Verify issue creation was successful
+   - Confirm issue URL is accessible
+   - Update issue with any additional context from user
+   - Proceed only after successful issue creation
 
 3. **AI-Assisted Planning Phase** 👥 (Human-AI Pair)
 
