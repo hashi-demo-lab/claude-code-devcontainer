@@ -11,6 +11,7 @@
 - design outputs "All planning an design outputs should be writtern to a subfolder of the module called "design and planning".
 - Module status "The module should already to cloned into the sub directory of the workspace and should follow the formation terraform-<provider name>-<provider resource>"
 - Terraform mcp "For Terraform when choosing MCP servers using the terraform hashicorp/terraform-mcp-server "prioritize tool lookups using the for getting provider documentation vs using awslabs."
+- GitHub rules "when working in GitHub always work under a feature branch, never commit directly to main"
 - GitHub issues "For planning GitHub issues should always be labelled documentation"
 - Module patterns "When looking at module for AWS they are published by aws-ia use 'SearchSpecificAwsIaModules', for Azure modules are published by Azure, IBM modules are published by terraform-ibm-modules"
 
@@ -96,7 +97,6 @@ Steps should be performed in the following order:
    - Create cost estimation framework
 
 6. **Design PR Creation** 👥 (Human-AI Pair)
-
    - Create pull request with architecture documentation
    - Include all design artifacts and diagrams
    - Add architectural decision records (ADRs) if applicable
