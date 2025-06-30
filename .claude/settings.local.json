@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git clone:*)",
-      "Bash(gh repo create:*)"
+      "Bash(gh repo create:*)",
+      "mcp__awslabs_terraform-mcp-server__SearchAwsProviderDocs"
     ]
   },
   "enableAllProjectMcpServers": true,
