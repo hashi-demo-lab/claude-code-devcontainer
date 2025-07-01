@@ -5,7 +5,23 @@ set -e
 
 # Install AWS CLI v2
 echo "Installing AWS CLI v2..."
-curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+# Detect architecture
+ARCH=$(uname -m)
+case $ARCH in
+    x86_64)
+        AWS_ARCH="x86_64"
+        ;;
+    aarch64|arm64)
+        AWS_ARCH="aarch64"
+        ;;
+    *)
+        echo "Unsupported architecture: $ARCH"
+        exit 1
+        ;;
+esac
+
+echo "Detected architecture: $ARCH, using AWS CLI for: $AWS_ARCH"
+curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_ARCH}.zip" -o /tmp/awscliv2.zip
 unzip -qq /tmp/awscliv2.zip -d /tmp
 sudo /tmp/aws/install
 rm -rf /tmp/aws /tmp/awscliv2.zip
