@@ -17,9 +17,8 @@ flowchart TB
   end
     START(["▶️ START Security Compliance Planning"]) --> A["📋 Define Security Requirements<br>Compliance Standards Needed"]
     A --> B["🧠 AI-Assisted Analysis"]
-    B --> B1["🛡️ Requirement Analyzer Agent<br>Parse Security Needs"] & B2["☁️ CSP Selector Agent<br>Identify Cloud Providers"]
+    B --> B1["🛡️ Requirement Analyzer Agent<br>Parse Security Needs"]
     B1 --> C["📐 Map to Standards<br>with AI assistance"]
-    B2 --> C
     C --> C1{"❓ Which CSP?"}
     C1 -- AWS --> AWS["🟠 AWS Security Agent"]
     C1 -- Azure --> AZ["🔵 Azure Security Agent"]
@@ -28,33 +27,15 @@ flowchart TB
     AZ --> D2{"❓ Interface Type?"}
     GCP --> D3{"❓ Interface Type?"}
     D1 -- CLI --> AWS_CLI["💻 AWS CLI Commands<br>aws securityhub get-findings"]
-    D1 -- API --> AWS_API["🔌 AWS API Calls<br>GetFindings()"]
     D2 -- CLI --> AZ_CLI["💻 Azure CLI Commands<br>az policy state list"]
-    D2 -- API --> AZ_API["🔌 Azure API Calls<br>PolicyStates.List()"]
     D3 -- CLI --> GCP_CLI["💻 GCP CLI Commands<br>gcloud scc findings list"]
-    D3 -- API --> GCP_API["🔌 GCP API Calls<br>ListFindings()"]
-    AWS_CLI --> E["📥 Data Collector Agent"]
-    AWS_API --> E
-    AZ_CLI --> E
-    AZ_API --> E
-    GCP_CLI --> E
-    GCP_API --> E
-    E --> F["🔄 Policy Parser Agent<br>Process JSON/YAML"]
-    F --> G["✔️ Compliance Validator Agent"]
-    G --> G1["📋 Validate Against Standards<br>CIS, PCI-DSS, HIPAA, NIST"]
-    G1 --> H{"✅ Compliant?"}
-    H -- No --> I["🔎 Gap Analyzer Agent<br>Find Missing Controls"]
-    I --> J["💡 Recommendation Agent<br>Suggest Remediation"]
-    J --> K["🎨 Policy Designer Agent"]
-    H -- Yes --> K
-    K --> L["📄 Artifact Generator Agent<br>Create Design Documents"]
+    AWS_CLI --> L["📄 Artifact Generator Agent<br>Create Design Documents"]
+    AZ_CLI --> L
+    GCP_CLI --> L
     L --> M["👤 Human Review<br>Security Architecture"]
-    M --> N{"✅ Design Approved?"}
-    N -- Changes Requested --> O["✏️ Update Design<br>with AI assistance"]
-    O --> M
-    N -- Approved --> P["📦 Output Design Artifacts"]
-    P --> Q["🔄 Monitoring Agent<br>Track Policy Updates"] & END1(["🎯 END<br>Security Design Complete"])
-    Q -.-> B
+    M --> O["✏️ Update Design<br>with AI assistance"]
+    O --> P["📦 Output Design Artifacts"]
+    P --> END1(["🎯 END<br>Security Design Complete"])
      L1:::human
      L2:::ai
      L3:::pair
@@ -65,7 +46,6 @@ flowchart TB
      A:::pair
      B:::pair
      B1:::ai
-     B2:::ai
      C:::pair
      C1:::decision
      AWS:::ai
@@ -75,25 +55,12 @@ flowchart TB
      D2:::decision
      D3:::decision
      AWS_CLI:::system
-     AWS_API:::system
      AZ_CLI:::system
-     AZ_API:::system
      GCP_CLI:::system
-     GCP_API:::system
-     E:::ai
-     F:::ai
-     G:::ai
-     G1:::ai
-     H:::decision
-     I:::ai
-     J:::ai
-     K:::ai
      L:::ai
      M:::human
-     N:::decision
      O:::pair
      P:::system
-     Q:::ai
      END1:::endsuccess
     classDef start fill:#1e40af,stroke:#1e3a8a,color:#fff,stroke-width:4px,font-weight:bold
     classDef endsuccess fill:#059669,stroke:#047857,color:#fff,stroke-width:4px,font-weight:bold
