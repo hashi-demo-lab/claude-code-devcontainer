@@ -1,0 +1,37 @@
+flowchart TD
+    subgraph "Devcontainer Dockerfile: Terraform AI Tooling"
+        CLAUDE["Claude Code<br>(AI coding assistant, npm global)"]
+        CLOUD["Cloud CLI Tools"]
+        TERRAFORM["Terraform Toolchain"]
+        STORAGE["Persistent Storage<br>(history, config volumes)"]
+
+        USER --> SHELL
+        SHELL --> CLAUDE
+        SHELL --> CLOUD
+        SHELL --> TERRAFORM
+        USER --> STORAGE
+
+
+        subgraph "Cloud CLI Tools"
+            AWS["AWS CLI (arch-aware)"]
+            AZURE["Azure CLI"]
+            GCP["Google Cloud SDK"]
+        end
+        CLOUD --> AWS
+        CLOUD --> AZURE
+        CLOUD --> GCP
+
+        subgraph "Terraform Toolchain"
+            TF["Terraform"]
+            TFLINT["TFLINT"]
+            PRE-COMMIT["Pre-commit"]
+            CHECKOV["Checkov"]
+            TFDOCS["Terraform Docs"]
+            TF-Policy["Tf-policy"]
+        end
+        TERRAFORM --> TF
+        TERRAFORM --> TFLINT
+        TERRAFORM --> CHECKOV
+        TERRAFORM --> TFDOCS
+    end
+    
