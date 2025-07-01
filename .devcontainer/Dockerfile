@@ -101,6 +101,9 @@ RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/wheel-group && \
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN chmod +x /tmp/library-scripts/*.sh
 
+# Install cloud CLI tools
+RUN /tmp/library-scripts/cloud-cli-tools.sh
+
 RUN /tmp/library-scripts/terraform-tools.sh \
     "${TERRAFORM_VERSION}" \
     "${TERRAFORM_DOCS_VERSION}" \
