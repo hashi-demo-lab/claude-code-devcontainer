@@ -23,19 +23,16 @@ flowchart TB
     C1 -- AWS --> AWS["🟠 AWS Security Agent"]
     C1 -- Azure --> AZ["🔵 Azure Security Agent"]
     C1 -- GCP --> GCP["🟢 GCP Security Agent"]
-    AWS --> D1{"❓ Interface Type?"}
-    AZ --> D2{"❓ Interface Type?"}
-    GCP --> D3{"❓ Interface Type?"}
-    D1 -- CLI --> AWS_CLI["💻 AWS CLI Commands<br>aws securityhub get-findings"]
-    D2 -- CLI --> AZ_CLI["💻 Azure CLI Commands<br>az policy state list"]
-    D3 -- CLI --> GCP_CLI["💻 GCP CLI Commands<br>gcloud scc findings list"]
-    AWS_CLI --> L["📄 Artifact Generator Agent<br>Create Design Documents Sections"]
-    AZ_CLI --> L
-    GCP_CLI --> L
+    AWS_CLI["💻 AWS CLI Commands<br>aws securityhub get-findings"] --> L["📄 Artifact Generator Agent<br>Create Design Documents Sections"]
+    AZ_CLI["💻 Azure CLI Commands<br>az policy state list"] --> L
+    GCP_CLI["💻 GCP CLI Commands<br>gcloud scc findings list"] --> L
     L --> M["👤 Human Review<br>Security Architecture"]
     M --> O["✏️ Update Design<br>with AI assistance"]
     O --> P["📦 Output Design Artifacts"]
     P --> END1(["🎯 END<br>Security Design Complete"])
+    AWS --> AWS_CLI
+    AZ --> AZ_CLI
+    GCP --> GCP_CLI
      L1:::human
      L2:::ai
      L3:::pair
@@ -51,13 +48,10 @@ flowchart TB
      AWS:::ai
      AZ:::ai
      GCP:::ai
-     D1:::decision
-     D2:::decision
-     D3:::decision
      AWS_CLI:::system
+     L:::ai
      AZ_CLI:::system
      GCP_CLI:::system
-     L:::ai
      M:::human
      O:::pair
      P:::system
