@@ -116,6 +116,8 @@ RUN /tmp/library-scripts/terraform-tools.sh \
     "${INFRACOST_VERSION}" \
     "${CHECKOV_VERSION}"
 
+
+RUN mkdir -p /home/node/.config && chown -R node:node /home/node/.config
 # Switch back to node user and install uv for them too
 USER node
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
