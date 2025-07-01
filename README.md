@@ -32,10 +32,9 @@ This devcontainer includes a sophisticated firewall setup that:
 
 ### Development Tools
 
-- Node.js 20
-- Git with Delta for improved diffs
+- Git
 - GitHub CLI with Claude extension
-- Python 3 with pip
+- Pre-commit
 
 ### Terraform Tools
 
