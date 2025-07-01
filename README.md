@@ -1,4 +1,4 @@
-# 🚀 Claude Code DevContainer & Terraform Module Workflow
+# 🚀 Claude Code DevContainer & Terraform Module Workflow - WORK IN PROGRESS
 
 A development container configuration for working with Claude Code and Claude GitHub integration, with comprehensive Terraform module development workflows. This repository provides a secure, isolated environment for development with pre-configured tools and settings optimized for AI-assisted coding and infrastructure development.
 
