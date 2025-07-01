@@ -29,7 +29,7 @@ flowchart TB
     D1 -- CLI --> AWS_CLI["💻 AWS CLI Commands<br>aws securityhub get-findings"]
     D2 -- CLI --> AZ_CLI["💻 Azure CLI Commands<br>az policy state list"]
     D3 -- CLI --> GCP_CLI["💻 GCP CLI Commands<br>gcloud scc findings list"]
-    AWS_CLI --> L["📄 Artifact Generator Agent<br>Create Design Documents"]
+    AWS_CLI --> L["📄 Artifact Generator Agent<br>Create Design Documents Sections"]
     AZ_CLI --> L
     GCP_CLI --> L
     L --> M["👤 Human Review<br>Security Architecture"]
