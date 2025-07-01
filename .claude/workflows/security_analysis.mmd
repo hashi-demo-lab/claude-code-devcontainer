@@ -1,0 +1,107 @@
+---
+config:
+  theme: neo
+  flowchart:
+    curve: basis
+  layout: fixed
+---
+flowchart TB
+ subgraph LEGEND["🔑 LEGEND"]
+    direction LR
+        L1["👤 Human Only"]
+        L2["🤖 AI Only"]
+        L3["👥 Human-AI Pair"]
+        L4["🔄 CI/CD Pipeline"]
+        L5["⚙️ System/Process"]
+        L6{"❓ Decision Point"}
+  end
+    START(["▶️ START Security Compliance Planning"]) --> A["📋 Define Security Requirements<br>Compliance Standards Needed"]
+    A --> B["🧠 AI-Assisted Analysis"]
+    B --> B1["🛡️ Requirement Analyzer Agent<br>Parse Security Needs"] & B2["☁️ CSP Selector Agent<br>Identify Cloud Providers"]
+    B1 --> C["📐 Map to Standards<br>with AI assistance"]
+    B2 --> C
+    C --> C1{"❓ Which CSP?"}
+    C1 -- AWS --> AWS["🟠 AWS Security Agent"]
+    C1 -- Azure --> AZ["🔵 Azure Security Agent"]
+    C1 -- GCP --> GCP["🟢 GCP Security Agent"]
+    AWS --> D1{"❓ Interface Type?"}
+    AZ --> D2{"❓ Interface Type?"}
+    GCP --> D3{"❓ Interface Type?"}
+    D1 -- CLI --> AWS_CLI["💻 AWS CLI Commands<br>aws securityhub get-findings"]
+    D1 -- API --> AWS_API["🔌 AWS API Calls<br>GetFindings()"]
+    D2 -- CLI --> AZ_CLI["💻 Azure CLI Commands<br>az policy state list"]
+    D2 -- API --> AZ_API["🔌 Azure API Calls<br>PolicyStates.List()"]
+    D3 -- CLI --> GCP_CLI["💻 GCP CLI Commands<br>gcloud scc findings list"]
+    D3 -- API --> GCP_API["🔌 GCP API Calls<br>ListFindings()"]
+    AWS_CLI --> E["📥 Data Collector Agent"]
+    AWS_API --> E
+    AZ_CLI --> E
+    AZ_API --> E
+    GCP_CLI --> E
+    GCP_API --> E
+    E --> F["🔄 Policy Parser Agent<br>Process JSON/YAML"]
+    F --> G["✔️ Compliance Validator Agent"]
+    G --> G1["📋 Validate Against Standards<br>CIS, PCI-DSS, HIPAA, NIST"]
+    G1 --> H{"✅ Compliant?"}
+    H -- No --> I["🔎 Gap Analyzer Agent<br>Find Missing Controls"]
+    I --> J["💡 Recommendation Agent<br>Suggest Remediation"]
+    J --> K["🎨 Policy Designer Agent"]
+    H -- Yes --> K
+    K --> L["📄 Artifact Generator Agent<br>Create Design Documents"]
+    L --> M["👤 Human Review<br>Security Architecture"]
+    M --> N{"✅ Design Approved?"}
+    N -- Changes Requested --> O["✏️ Update Design<br>with AI assistance"]
+    O --> M
+    N -- Approved --> P["📦 Output Design Artifacts"]
+    P --> Q["🔄 Monitoring Agent<br>Track Policy Updates"] & END1(["🎯 END<br>Security Design Complete"])
+    Q -.-> B
+     L1:::human
+     L2:::ai
+     L3:::pair
+     L4:::cicd
+     L5:::system
+     L6:::decision
+     START:::start
+     A:::pair
+     B:::pair
+     B1:::ai
+     B2:::ai
+     C:::pair
+     C1:::decision
+     AWS:::ai
+     AZ:::ai
+     GCP:::ai
+     D1:::decision
+     D2:::decision
+     D3:::decision
+     AWS_CLI:::system
+     AWS_API:::system
+     AZ_CLI:::system
+     AZ_API:::system
+     GCP_CLI:::system
+     GCP_API:::system
+     E:::ai
+     F:::ai
+     G:::ai
+     G1:::ai
+     H:::decision
+     I:::ai
+     J:::ai
+     K:::ai
+     L:::ai
+     M:::human
+     N:::decision
+     O:::pair
+     P:::system
+     Q:::ai
+     END1:::endsuccess
+    classDef start fill:#1e40af,stroke:#1e3a8a,color:#fff,stroke-width:4px,font-weight:bold
+    classDef endsuccess fill:#059669,stroke:#047857,color:#fff,stroke-width:4px,font-weight:bold
+    classDef endwarn fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:3px,font-weight:bold
+    classDef human fill:#3b82f6,stroke:#2563eb,color:#fff,stroke-width:2px,font-weight:bold
+    classDef ai fill:#22c55e,stroke:#16a34a,color:#fff,stroke-width:2px,font-weight:bold
+    classDef cicd fill:#06b6d4,stroke:#0891b2,color:#fff,stroke-width:2px,font-weight:bold
+    classDef pair fill:#a855f7,stroke:#9333ea,color:#fff,stroke-width:2px,font-weight:bold
+    classDef system fill:#6b7280,stroke:#4b5563,color:#fff,stroke-width:2px,font-weight:bold
+    classDef decision fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:3px,font-weight:bold
+    style LEGEND fill:#1f2937,stroke:#374151,stroke-width:2px,color:#f9fafb,font-weight:bold
