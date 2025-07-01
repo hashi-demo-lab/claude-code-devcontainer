@@ -1,37 +1,118 @@
-flowchart TD
-    subgraph "Devcontainer Dockerfile: Terraform AI Tooling"
-        CLAUDE["Claude Code<br>(AI coding assistant, npm global)"]
-        CLOUD["Cloud CLI Tools"]
-        TERRAFORM["Terraform Toolchain"]
-        STORAGE["Persistent Storage<br>(history, config volumes)"]
-
-        USER --> SHELL
-        SHELL --> CLAUDE
-        SHELL --> CLOUD
-        SHELL --> TERRAFORM
-        USER --> STORAGE
-
-
-        subgraph "Cloud CLI Tools"
-            AWS["AWS CLI (arch-aware)"]
-            AZURE["Azure CLI"]
-            GCP["Google Cloud SDK"]
-        end
-        CLOUD --> AWS
-        CLOUD --> AZURE
-        CLOUD --> GCP
-
-        subgraph "Terraform Toolchain"
-            TF["Terraform"]
-            TFLINT["TFLINT"]
-            PRE-COMMIT["Pre-commit"]
-            CHECKOV["Checkov"]
-            TFDOCS["Terraform Docs"]
-            TF-Policy["Tf-policy"]
-        end
-        TERRAFORM --> TF
-        TERRAFORM --> TFLINT
-        TERRAFORM --> CHECKOV
-        TERRAFORM --> TFDOCS
-    end
-    
+---
+config:
+  theme: neo
+  flowchart:
+    curve: basis
+  layout: fixed
+---
+flowchart TB
+ subgraph LEGEND["🔑 LEGEND"]
+    direction LR
+        L1["⚙️ Core Tools"]
+        L2["☁️ Cloud CLI"]
+        L3["🛠️ Terraform"]
+        L4["🤖 AI/MCP Tools"]
+        L5["💻 VS Code"]
+  end
+ subgraph CORE["⚙️ Core Development Tools"]
+    direction TB
+        GIT["🔀 Git<br>Version Control"]
+        PRECOMMIT["🔗 Pre-commit<br>Git Hooks"]
+        GITHUB1["🔗 GitHub<br>CLI"]
+  end
+ subgraph CLOUD["☁️ Cloud CLI Tools"]
+    direction TB
+        AWS["🟧 AWS CLI<br>Architecture-aware"]
+        AZURE["🔵 Azure CLI<br>Resource Management"]
+        GCP["🟡 Google Cloud SDK<br>GCP Services"]
+  end
+ subgraph TERRAFORM["🛠️ Terraform Toolchain"]
+    direction TB
+        TF["🏗️ Terraform<br>Infrastructure as Code"]
+        TFLINT["🔍 TFLint<br>Terraform Linting"]
+        CHECKOV["🛡️ Checkov<br>Security Scanning"]
+        TFDOCS["📋 Terraform Docs<br>Documentation Gen"]
+        TFPOLICY["📏 TF-Policy<br>Policy Validation"]
+  end
+ subgraph MCPSERVERS["🔌 MCP Servers"]
+    direction TB
+        TFMCP["🏗️ Terraform MCP<br>HashiCorp Server"]
+        AWSMCP["🟧 AWS Terraform MCP<br>awslabs Server"]
+        CONTEXT7["🧠 Context7<br>Upstash MCP"]
+        THINKING["💭 Sequential Thinking<br>MCP Server"]
+        ATLASSIAN["🔷 Atlassian<br>MCP Server"]
+  end
+ subgraph MCP["🤖 MCP & AI Tools"]
+    direction TB
+        CLAUDE["🧠 Claude Code<br>AI Coding Assistant"]
+        MCPCONFIG["🔧 MCP Configuration<br>.mcp.json"]
+        MCPSERVERS
+  end
+ subgraph VSCODETOOLS["💻 VS Code Integration"]
+    direction TB
+        EXTENSIONS["🧩 VS Code Extensions<br>Terraform, HCL, Claude etc."]
+        TERMINAL["🖥️ Integrated Terminal<br>Container Shell Access"]
+        EXPLORER["📁 File Explorer<br>Workspace Navigation"]
+  end
+    USER(["👤 Developer"]) --> VSCODE["💻 VS Code<br>DevContainer Environment"]
+    VSCODE --> SHELL["🖥️ Container Shell<br>zsh terminal"] & MCP & VSCODETOOLS
+    SHELL --> CORE & CLOUD & TERRAFORM
+    TERMINAL --> SHELL
+    CLAUDE -.-> TFMCP & AWSMCP & CONTEXT7 & THINKING & ATLASSIAN
+    MCPCONFIG --> MCPSERVERS
+     GIT:::tool
+     PRECOMMIT:::tool
+     GITHUB1:::core
+     GITHUB1:::tool
+     AWS:::cloudtool
+     AZURE:::cloudtool
+     GCP:::cloudtool
+     TF:::tftool
+     TF:::Rose
+     TFLINT:::tftool
+     TFLINT:::Rose
+     CHECKOV:::tftool
+     CHECKOV:::Rose
+     TFDOCS:::tftool
+     TFDOCS:::Rose
+     TFPOLICY:::tftool
+     TFPOLICY:::Rose
+     TFMCP:::mcptool
+     AWSMCP:::mcptool
+     CONTEXT7:::mcptool
+     THINKING:::mcptool
+     ATLASSIAN:::mcptool
+     CLAUDE:::aitool
+     MCPCONFIG:::mcptool
+     EXTENSIONS:::vscode
+     EXTENSIONS:::Aqua
+     EXTENSIONS:::Sky
+     TERMINAL:::vscode
+     TERMINAL:::Aqua
+     TERMINAL:::Sky
+     EXPLORER:::vscode
+     EXPLORER:::Sky
+     USER:::user
+     VSCODE:::vscode
+     SHELL:::shell
+     MCP:::mcp
+     VSCODETOOLS:::vscode
+     CORE:::core
+     CLOUD:::cloud
+     TERRAFORM:::terraform
+    classDef user fill:#1e40af,stroke:#1e3a8a,color:#fff,stroke-width:4px,font-weight:bold
+    classDef shell fill:#374151,stroke:#1f2937,color:#fff,stroke-width:3px,font-weight:bold
+    classDef cloud fill:#0891b2,stroke:#0e7490,color:#fff,stroke-width:2px,font-weight:bold
+    classDef terraform fill:#7c3aed,stroke:#6d28d9,color:#fff,stroke-width:2px,font-weight:bold
+    classDef mcp fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:2px,font-weight:bold
+    classDef vscode fill:#0078d4,stroke:#106ebe,color:#fff,stroke-width:2px,font-weight:bold
+    classDef cloudtool fill:#06b6d4,stroke:#0891b2,color:#fff,stroke-width:1px
+    classDef tftool fill:#a855f7,stroke:#9333ea,color:#fff,stroke-width:1px
+    classDef aitool fill:#f97316,stroke:#ea580c,color:#fff,stroke-width:1px
+    classDef mcptool fill:#fbbf24,stroke:#f59e0b,color:#fff,stroke-width:1px
+    classDef core fill:#059669, stroke:#047857, color:#fff, stroke-width:2px, font-weight:bold
+    classDef tool fill:#10b981, stroke:#059669, color:#fff, stroke-width:1px
+    classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
+    classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
+    classDef Rose stroke-width:1px, stroke-dasharray:none, stroke:#FF5978, fill:#FFDFE5, color:#8E2236
+    style LEGEND fill:#1f2937,stroke:#374151,stroke-width:2px,color:#f9fafb,font-weight:bold
