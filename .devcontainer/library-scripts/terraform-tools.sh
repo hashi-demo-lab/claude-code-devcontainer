@@ -14,12 +14,48 @@ TFLINT_AZURE_RULESET_VERSION=${7:-"0.23.0"}
 TFLINT_GCP_RULESET_VERSION=${8:-"0.23.1"}
 INFRACOST_VERSION=${11:-"0.10.41"}
 CHECKOV_VERSION=${12:-"3.2.439"}
+TERRAFORM_ALPHA=${13:-"false"}
 
-echo "Installing Terraform v${TERRAFORM_VERSION}..."
-curl -sSL -o /tmp/terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
-unzip -qq /tmp/terraform.zip -d /tmp
-sudo mv /tmp/terraform /usr/local/bin/
-rm -f /tmp/terraform.zip
+if [ "$TERRAFORM_ALPHA" = "true" ]; then
+    echo "Installing Terraform Alpha binaries from library-scripts/alpha directory..."
+    
+    # Get the directory where this script is located
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+    ALPHA_DIR="${SCRIPT_DIR}/alpha"
+    
+    # Find and extract terraform alpha binary
+    if [ -f "${ALPHA_DIR}/terraform_"*".zip" ]; then
+        TERRAFORM_ALPHA_ZIP=$(ls "${ALPHA_DIR}"/terraform_*.zip | head -1)
+        echo "Found Terraform alpha binary: $(basename $TERRAFORM_ALPHA_ZIP)"
+        
+        # Extract to node home directory
+        unzip -qq "$TERRAFORM_ALPHA_ZIP" -d /tmp
+        sudo mv /tmp/terraform /usr/local/bin/
+        echo "Terraform alpha binary installed to /usr/local/bin/"
+    else
+        echo "Error: No Terraform alpha binary found in ${ALPHA_DIR}"
+        exit 1
+    fi
+    
+    # Find and extract tfpolicy alpha binary if it exists
+    if [ -f "${ALPHA_DIR}/tfpolicy_"*".zip" ]; then
+        TFPOLICY_ALPHA_ZIP=$(ls "${ALPHA_DIR}"/tfpolicy_*.zip | head -1)
+        echo "Found TFPolicy alpha binary: $(basename $TFPOLICY_ALPHA_ZIP)"
+        
+        # Extract to node home directory
+        unzip -qq "$TFPOLICY_ALPHA_ZIP" -d /tmp
+        sudo mv /tmp/tfpolicy /usr/local/bin/
+        echo "TFPolicy alpha binary installed to /usr/local/bin/"
+    else
+        echo "Warning: No TFPolicy alpha binary found in ${ALPHA_DIR}"
+    fi
+else
+    echo "Installing Terraform v${TERRAFORM_VERSION}..."
+    curl -sSL -o /tmp/terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+    unzip -qq /tmp/terraform.zip -d /tmp
+    sudo mv /tmp/terraform /usr/local/bin/
+    rm -f /tmp/terraform.zip
+fi
 
 echo "Installing terraform-docs v${TERRAFORM_DOCS_VERSION}..."
 curl -sSLo /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz"
