@@ -12,9 +12,9 @@ TFLINT_VERSION=${5:-"0.48.0"}
 TFLINT_AWS_RULESET_VERSION=${6:-"0.23.1"}
 TFLINT_AZURE_RULESET_VERSION=${7:-"0.23.0"}
 TFLINT_GCP_RULESET_VERSION=${8:-"0.23.1"}
-INFRACOST_VERSION=${11:-"0.10.41"}
-CHECKOV_VERSION=${12:-"3.2.439"}
-TERRAFORM_ALPHA=${13:-"false"}
+INFRACOST_VERSION=${9:-"0.10.41"}
+CHECKOV_VERSION=${10:-"3.2.439"}
+TERRAFORM_ALPHA=${11:-"false"}
 
 if [ "$TERRAFORM_ALPHA" = "true" ]; then
     echo "Installing Terraform Alpha binaries from library-scripts/alpha directory..."
