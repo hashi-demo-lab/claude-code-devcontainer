@@ -22,32 +22,31 @@ if [ "$TERRAFORM_ALPHA" = "true" ]; then
     # Get the directory where this script is located
     SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
     ALPHA_DIR="${SCRIPT_DIR}/alpha"
+    ls -la "${ALPHA_DIR}/"
     
-    # Find and extract terraform alpha binary
-    if [ -f "${ALPHA_DIR}/terraform_"*".zip" ]; then
-        TERRAFORM_ALPHA_ZIP=$(ls "${ALPHA_DIR}"/terraform_*.zip | head -1)
-        echo "Found Terraform alpha binary: $(basename $TERRAFORM_ALPHA_ZIP)"
-        
-        # Extract to node home directory
-        unzip -qq "$TERRAFORM_ALPHA_ZIP" -d /tmp
-        sudo mv /tmp/terraform /usr/local/bin/
+    # Find terraform alpha binary (pre-extracted, accepting Darwin binaries for Mac-only setup)
+    if [ -f "${ALPHA_DIR}/terraform" ]; then
+        echo "Found Terraform alpha binary: terraform"
+        sudo cp "${ALPHA_DIR}/terraform" /usr/local/bin/
+        sudo chmod +x /usr/local/bin/terraform
         echo "Terraform alpha binary installed to /usr/local/bin/"
     else
         echo "Error: No Terraform alpha binary found in ${ALPHA_DIR}"
+        echo "Looking for: terraform (pre-extracted binary)"
+        echo "Available files:"
+        ls -la "${ALPHA_DIR}/" 2>/dev/null || echo "Directory not accessible"
         exit 1
     fi
     
-    # Find and extract tfpolicy alpha binary if it exists
-    if [ -f "${ALPHA_DIR}/tfpolicy_"*".zip" ]; then
-        TFPOLICY_ALPHA_ZIP=$(ls "${ALPHA_DIR}"/tfpolicy_*.zip | head -1)
-        echo "Found TFPolicy alpha binary: $(basename $TFPOLICY_ALPHA_ZIP)"
-        
-        # Extract to node home directory
-        unzip -qq "$TFPOLICY_ALPHA_ZIP" -d /tmp
-        sudo mv /tmp/tfpolicy /usr/local/bin/
+    # Find tfpolicy alpha binary if it exists (pre-extracted)
+    if [ -f "${ALPHA_DIR}/tfpolicy" ]; then
+        echo "Found TFPolicy alpha binary: tfpolicy"
+        sudo cp "${ALPHA_DIR}/tfpolicy" /usr/local/bin/
+        sudo chmod +x /usr/local/bin/tfpolicy
         echo "TFPolicy alpha binary installed to /usr/local/bin/"
     else
         echo "Warning: No TFPolicy alpha binary found in ${ALPHA_DIR}"
+        echo "Looking for: tfpolicy (pre-extracted binary)"
     fi
 else
     echo "Installing Terraform v${TERRAFORM_VERSION}..."
