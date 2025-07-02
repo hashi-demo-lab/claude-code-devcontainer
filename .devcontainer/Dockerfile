@@ -13,7 +13,7 @@ ARG TFLINT_AZURE_RULESET_VERSION="0.23.0"
 ARG TFLINT_GCP_RULESET_VERSION="0.23.1"
 ARG INFRACOST_VERSION="0.10.41"
 ARG CHECKOV_VERSION="3.2.439"
-
+ARG TERRAFORM_ALPHA="true"
 # Install basic development tools and iptables/ipset
 RUN apt update && apt install -y less \
   git \
@@ -114,7 +114,8 @@ RUN /tmp/library-scripts/terraform-tools.sh \
     "${TFLINT_AZURE_RULESET_VERSION}" \
     "${TFLINT_GCP_RULESET_VERSION}" \
     "${INFRACOST_VERSION}" \
-    "${CHECKOV_VERSION}"
+    "${CHECKOV_VERSION}" \
+    "${TERRAFORM_ALPHA}"
 
 
 RUN mkdir -p /home/node/.config && chown -R node:node /home/node/.config
