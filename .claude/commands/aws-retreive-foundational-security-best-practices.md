@@ -11,3 +11,10 @@ aws securityhub list-security-control-definitions \
   --max-items 1000 \
   --output json > aws-foundational-security-all-controls.json
 ```
+
+
+# get aws trusted advisor checks
+
+```bash
+aws support describe-trusted-advisor-checks --language "en" --output json > describe-trusted-advisor-checks.json
+```
