@@ -39,7 +39,8 @@ RUN apt update && apt install -y less \
 
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
-  chown -R node:node /usr/local/share
+  chown -R node:node /usr/local/share && \
+  rm -rf /var/lib/apt/lists/*
 
 ARG USERNAME=node
 
