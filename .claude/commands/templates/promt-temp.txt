@@ -1,0 +1,3 @@
+I need to create a slash command prompt for the creation of a new confluence page, I have an existing markdown template, I only want to ask the consumer the minimal 
+  requirements for atlassian confluence page creation with the Platform Team space. Read the markdown template "module-template_md.md" and capture the minimal mandatory 
+  inputs to create the confluence page, the idea is we will populate more inputs in jira as part of the design process
