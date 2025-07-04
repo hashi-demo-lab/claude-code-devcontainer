@@ -18,3 +18,10 @@ aws securityhub list-security-control-definitions \
 ```bash
 aws support describe-trusted-advisor-checks --language "en" --output json > describe-trusted-advisor-checks.json
 ```
+
+
+# get AWS Well Architected Lense Summary
+
+```bash
+aws wellarchitected list-lenses
+```
