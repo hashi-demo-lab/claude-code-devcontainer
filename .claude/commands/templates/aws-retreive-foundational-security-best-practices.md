@@ -1,3 +1,8 @@
+# AWS Security standards
+```
+aws securityhub describe-standards --output json > aws-security-standards.json
+```
+
 # Retrieve AWS Foundational Security Best Practices 
 
 ## confirm logged into AWS cli
@@ -23,5 +28,11 @@ aws support describe-trusted-advisor-checks --language "en" --output json > desc
 # get AWS Well Architected Lense Summary
 
 ```bash
-aws wellarchitected list-lenses
+q
+```
+
+
+# security hub confirmance packs
+```
+https://github.com/awslabs/aws-config-rules/tree/master/aws-config-conformance-packs
 ```
