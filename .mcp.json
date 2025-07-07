@@ -40,6 +40,14 @@
         "NEO4J_PASSWORD": "password",
         "NEO4J_DATABASE": "neo4j"
       }
+    },
+    "neo4j-data-modeling": {
+      "command": "uvx",
+      "args": [
+        "mcp-neo4j-data-modeling@0.1.1",
+        "--transport",
+        "stdio"
+      ]
     }
   }
 }
