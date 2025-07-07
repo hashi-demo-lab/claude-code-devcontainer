@@ -42,11 +42,9 @@
       }
     },
     "neo4j-data-modeling": {
-      "command": "uvx",
+      "command": "/home/node/.local/bin/uvx",
       "args": [
-        "mcp-neo4j-data-modeling@0.1.1",
-        "--transport",
-        "stdio"
+        "mcp-neo4j-data-modeling@0.1.0"
       ]
     }
   }
