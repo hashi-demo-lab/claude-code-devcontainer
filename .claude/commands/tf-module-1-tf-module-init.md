@@ -9,30 +9,24 @@ This command guide enables Claude Code to create new Terraform module repositori
 
 - `<PROVIDER>`: Main cloud provider (aws, azure, google, etc.)
 - `<NAME>`: Infrastructure type the module manages (can contain hyphens)
+- Always confirm with the user before proceeding.
 - Examples: `terraform-aws-vpc`, `terraform-google-vault`, `terraform-aws-ec2-instance`
 
 Claude should ALWAYS validate module names against this pattern before creation.
 
 ## Prerequisites
 
-1. Install GitHub CLI if you haven't already:
+1. check GitHub CLI login status
 
-   ```bash
-   # macOS
-   brew install gh
+```bash
+gh auth status
+```
 
-   # Windows
-   winget install --id GitHub.cli
+Only if not logged in already authenticate with GitHub:
 
-   # Linux
-   # Follow instructions at https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-   ```
-
-2. Authenticate with GitHub:
-
-   ```bash
-   gh auth login
-   ```
+```bash
+gh auth login
+```
 
 3. **Required Template Configuration:**
 
@@ -256,7 +250,6 @@ Include the following details when updating CLAUDE.md
 - Local directory path $(pwd)
 - Any warnings or optional tools that weren't available
 - Next development steps
-
 
 ### Step 7: Final Confirmation
 

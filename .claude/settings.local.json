@@ -5,7 +5,17 @@
       "Bash(gh repo create:*)",
       "mcp__awslabs_terraform-mcp-server__SearchAwsProviderDocs",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(grep:*)",
+      "mcp__neo4j-local-data__get_neo4j_schema",
+      "mcp__neo4j-data-modeling__validate_data_model",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(apt-get:*)",
+      "Bash(apt-get install:*)",
+      "Bash(sudo apt-get:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(pip3 install:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
