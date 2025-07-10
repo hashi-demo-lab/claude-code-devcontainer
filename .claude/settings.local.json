@@ -15,7 +15,8 @@
       "Bash(apt-get install:*)",
       "Bash(sudo apt-get:*)",
       "Bash(sudo apt-get install:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "Bash(gh auth:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
