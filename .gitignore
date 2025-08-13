@@ -2,4 +2,5 @@
 # This file is used to ignore files and directories in the repository.
 .devcontainer/library-scripts/alpha/*
 test.sh
-watsonx-vault-demo
+watsonx-vault-demo/*
+temp/*
