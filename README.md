@@ -18,6 +18,30 @@ A development container configuration for working with Claude Code and Claude Gi
 3. When prompted, click "Reopen in Container"
 4. Alternatively, press F1 and select "Remote-Containers: Reopen in Container"
 
+### Building and Publishing the Docker Image
+
+If you want to build and publish your own version of the devcontainer image:
+
+1. Navigate to the `.devcontainer` directory:
+
+   ```bash
+   cd .devcontainer
+   ```
+
+2. Build the Docker image:
+
+   ```bash
+   docker build -t your-dockerhub-username/claude-code-tf-devcontainer:latest .
+   ```
+
+3. Push to Docker Hub:
+
+   ```bash
+   docker push your-dockerhub-username/claude-code-tf-devcontainer:latest
+   ```
+
+The pre-built image is available at: `docker.io/srlynch1/claude-code-tf-devcontainer:latest`
+
 ## 🔒 Security Features
 
 This devcontainer includes a sophisticated firewall setup that:
