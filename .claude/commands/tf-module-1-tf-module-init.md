@@ -272,7 +272,8 @@ echo run /tf-module-planning
 - Local directory path
 - Any warnings or optional tools that weren't available
 - Next development steps
-- For module design and planning via a GitHub issue run /tf-module-planning. This will start the planning process via GitHub Issues
+- For module design and planning via a GitHub issue run /tf-module-2-tf-module-plan-new-github-issue
+  This will start the planning process via GitHub Issues
 
 ## Related Documentation
 
