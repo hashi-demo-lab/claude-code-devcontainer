@@ -8,17 +8,6 @@
         "--rm",
         "hashicorp/terraform-mcp-server"
       ]
-    },
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
-    },
-    "atlassian": {
-      "type": "sse",
-      "url": "https://mcp.atlassian.com/v1/sse"
     }
   }
 }
