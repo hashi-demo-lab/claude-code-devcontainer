@@ -100,8 +100,8 @@ RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/wheel-group && \
 
 # Copy library scripts
 COPY library-scripts/*.sh /tmp/library-scripts/
-# COPY ALPHA library files
-COPY library-scripts/alpha/* /tmp/library-scripts/alpha/
+# COPY ALPHA library files (directory may be empty)
+COPY library-scripts/alpha/ /tmp/library-scripts/alpha/
 RUN chmod +x /tmp/library-scripts/*.sh
 
 # Install cloud CLI tools
@@ -131,3 +131,36 @@ RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
 
 # Install pre-commit for the node user so they can use it
 RUN ~/.local/bin/uv tool install pre-commit --with pre-commit-uv
+
+# ── Go runtime ────────────────────────────────────────────────────────────────
+USER root
+ARG GO_VERSION=1.22.0
+RUN ARCH=$(dpkg --print-architecture) && \
+    case "$ARCH" in \
+        amd64) GOARCH="amd64" ;; \
+        arm64) GOARCH="arm64" ;; \
+        *) echo "Unsupported arch: $ARCH" && exit 1 ;; \
+    esac && \
+    curl -fsSL "https://go.dev/dl/go${GO_VERSION}.linux-${GOARCH}.tar.gz" \
+        | tar -C /usr/local -xz
+ENV PATH="/usr/local/go/bin:${PATH}"
+RUN mkdir -p /home/node/go && chown -R node:node /home/node/go
+
+# Go tools (installed as node user so they land in /home/node/go/bin)
+USER node
+ENV GOPATH="/home/node/go"
+ENV PATH="${GOPATH}/bin:${PATH}"
+RUN echo 'export GOPATH="$HOME/go"' >> ~/.zshrc && \
+    echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.zshrc
+RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0 && \
+    go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+# ── Ansible tooling ───────────────────────────────────────────────────────────
+# ansible-lint  : used at runtime by the validate_playbook MCP tool
+# molecule      : used at runtime by the generate_test_cases MCP tool
+USER root
+RUN /root/.local/bin/uv pip install --system \
+        ansible-lint \
+        molecule \
+        "molecule-plugins[docker]"
+USER node
