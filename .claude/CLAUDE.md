@@ -1,16 +1,40 @@
-# CLAUDE.md - Terraform Development Focus
+# CLAUDE.md — Ansible MCP Server Devcontainer
 
-- MCP Resources and tools to consult
+This devcontainer is configured for building the Ansible MCP Server in Go.
 
-    - Resources
-        - *terraform_aws_best_practices* for AWS best practices about security, code base structure and organization, AWS Provider version management, and usage of community modules
+## Project context
 
-        - terraform_awscc_provider_resources_listing for available AWS Cloud Control API resources
-        - terraform_aws_provider_resources_listing for available AWS resources
+Full project context, architecture decisions, tool inventory, and implementation
+instructions are in `/workspace/ansible-mcp-server/CLAUDE.md`.
 
-    - Tools
+Full implementation spec is in `/workspace/ansible-mcp-server/spec.md`.
 
-        - SearchSpecificAwsIaModules tool to check for specialized AWS-IA modules first (Bedrock, OpenSearch Serverless, SageMaker, Streamlit)
-        - SearchUserProvidedModule tool to analyze any Terraform Registry module provided by the user
-        - SearchAwsccProviderDocs tool to look up specific Cloud Control API resources
-        - SearchAwsProviderDocs tool to look up specific resource documentation.
+Read both files at the start of any session before writing code.
+
+## MCP servers available
+
+- **sequential-thinking** — use for complex multi-step reasoning (e.g. fallback
+  logic, HTML parser design, auth flow)
+- **context7** — use to look up live API documentation for Go libraries before
+  writing code against them: `mcp-go`, `go-retryablehttp`, `golang.org/x/net/html`
+- **github** (via CLAUDE_GITHUB_MCP_ENABLED) — use to read
+  `hashicorp/terraform-mcp-server` source when you need to match its
+  architectural patterns
+
+## Slash commands
+
+| Command | What it does |
+|---|---|
+| `/build-mcp` | `go build ./...` + `go vet ./...` |
+| `/test-mcp` | `go test ./... -v -race` |
+| `/lint-mcp` | `golangci-lint` + `gosec` |
+| `/validate-mcp` | All three in sequence; stops on first failure |
+| `/create-mcp-tool <name>` | Scaffold tool file + test file from spec.md |
+
+## Development loop
+
+```
+/loop /validate-mcp
+```
+
+Implement one tool, run `/validate-mcp`, fix failures, loop until green, commit.

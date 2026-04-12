@@ -56,7 +56,16 @@ for domain in \
     "api.anthropic.com" \
     "sentry.io" \
     "statsig.anthropic.com" \
-    "statsig.com"; do
+    "statsig.com" \
+    "proxy.golang.org" \
+    "sum.golang.org" \
+    "storage.googleapis.com" \
+    "cloud.redhat.com" \
+    "console.redhat.com" \
+    "sso.redhat.com" \
+    "galaxy.ansible.com" \
+    "docs.ansible.com" \
+    "pkg.go.dev"; do
     echo "Resolving $domain..."
     ips=$(dig +short A "$domain")
     if [ -z "$ips" ]; then
