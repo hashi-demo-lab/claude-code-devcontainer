@@ -159,8 +159,9 @@ RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.63.4 && \
 # ansible-lint  : used at runtime by the validate_playbook MCP tool
 # molecule      : used at runtime by the generate_test_cases MCP tool
 USER root
-RUN /root/.local/bin/uv pip install --system \
-        ansible-lint \
-        molecule \
-        "molecule-plugins[docker]"
+RUN python3 -m venv /opt/ansible-venv && \
+    /opt/ansible-venv/bin/pip install --upgrade pip && \
+    /opt/ansible-venv/bin/pip install ansible-lint molecule "molecule-plugins[docker]" && \
+    ln -sf /opt/ansible-venv/bin/ansible-lint /usr/local/bin/ansible-lint && \
+    ln -sf /opt/ansible-venv/bin/molecule /usr/local/bin/molecule
 USER node
