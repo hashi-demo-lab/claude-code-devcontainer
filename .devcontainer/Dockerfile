@@ -134,7 +134,7 @@ RUN ~/.local/bin/uv tool install pre-commit --with pre-commit-uv
 
 # ── Go runtime ────────────────────────────────────────────────────────────────
 USER root
-ARG GO_VERSION=1.22.0
+ARG GO_VERSION=1.23.4
 RUN ARCH=$(dpkg --print-architecture) && \
     case "$ARCH" in \
         amd64) GOARCH="amd64" ;; \
@@ -152,7 +152,7 @@ ENV GOPATH="/home/node/go"
 ENV PATH="${GOPATH}/bin:${PATH}"
 RUN echo 'export GOPATH="$HOME/go"' >> ~/.zshrc && \
     echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.zshrc
-RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0 && \
+RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.63.4 && \
     go install github.com/securego/gosec/v2/cmd/gosec@latest
 
 # ── Ansible tooling ───────────────────────────────────────────────────────────
