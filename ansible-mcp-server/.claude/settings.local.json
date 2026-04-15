@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p ~/.claude/skills/solution-discovery-to-validation)",
+      "Bash(cp /Users/djoo/Documents/Personal/Projects/AI-related/solution-discovery-to-validation-skill/skills/solution-discovery-to-validation/SKILL.md ~/.claude/skills/solution-discovery-to-validation/SKILL.md)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(go mod:*)",
+      "Bash(go build:*)",
+      "Bash(go vet:*)",
+      "Bash(go test:*)",
+      "Bash(mkdir -p /Users/djoo/Documents/Personal/Projects/AI-related/ansible-mcp-server-devcontainer/claude-code-devcontainer/.devcontainer/library-scripts/alpha)",
+      "Bash(touch /Users/djoo/Documents/Personal/Projects/AI-related/ansible-mcp-server-devcontainer/claude-code-devcontainer/.devcontainer/library-scripts/alpha/.gitkeep)"
+    ]
+  }
+}
